@@ -671,12 +671,14 @@ export default function Home() {
                 <img
                   src={visualAssets.cover}
                   alt="Capa do livro Cartografia da Soberania Interior"
+                  loading="lazy"
                   style={{
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
                     objectPosition: "center top",
                     display: "block",
+                    borderRadius: "1.75rem",
                   }}
                 />
               </div>

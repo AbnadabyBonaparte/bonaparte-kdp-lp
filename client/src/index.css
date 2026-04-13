@@ -1223,10 +1223,6 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     pointer-events: none;
   }
 
-  .book-cover-image {
-    border-radius: inherit;
-  }
-
   .book-stage-copy {
     display: flex;
     flex-direction: column;
