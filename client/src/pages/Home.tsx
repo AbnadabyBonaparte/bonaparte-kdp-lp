@@ -23,16 +23,16 @@ const visualAssets = {
 
 const manifestoCards = [
   {
-    title: "Diagnóstico com densidade",
-    text: "A página explica o problema antes da oferta: excesso de vida herdada, distração arquitetada e produtividade sem presença.",
+    title: "Antes da leitura, clareza",
+    text: "Você não precisa de mais conteúdo. Precisa enxergar o que já está operando sem consciência.",
   },
   {
-    title: "Isca de alta intenção",
-    text: "O visitante recebe um dossiê útil por si só, o que aquece a compra e qualifica a base para futuros lançamentos.",
+    title: "Um material que se sustenta",
+    text: "O dossiê introdutório não funciona como promessa vazia. Ele entrega utilidade real antes de qualquer decisão.",
   },
   {
-    title: "Amazon com contexto",
-    text: "O clique para a Amazon deixa de ser frio e passa a carregar percepção de valor, tom editorial e maturidade de decisão.",
+    title: "Decisão com contexto",
+    text: "A obra deixa de ser descoberta aleatória e passa a ser escolha consciente, com mais densidade e compatibilidade.",
   },
 ];
 
@@ -48,9 +48,9 @@ const metrics = [
       "Mais autoria, critério e presença. Menos automatismo, ruído e vida terceirizada.",
   },
   {
-    label: "Arquitetura do funil",
+    label: "Jornada editorial",
     value:
-      "Lead primeiro, Amazon depois — com aquecimento real e base proprietária em construção.",
+      "Material introdutório primeiro, obra principal depois — com contexto, aquecimento e construção de base própria.",
   },
 ];
 
@@ -95,23 +95,23 @@ const promises = [
 const leadDeliverables = [
   {
     index: "01",
-    title: "Checklist de auditoria existencial",
-    text: "Para identificar áreas da vida que parecem escolha, mas na prática são herança, ruído ou hábito não examinado.",
+    title: "Auditoria silenciosa",
+    text: "Identifique padrões que parecem escolha, mas são apenas continuidade, ruído ou herança não examinada.",
   },
   {
     index: "02",
-    title: "Mapa de soberania atencional",
-    text: "Um quadro simples para diagnosticar fuga, fragmentação, distração e perda de cadência mental em contexto profissional.",
+    title: "Mapa de atenção",
+    text: "Entenda onde sua energia está sendo drenada sem percepção e por que seu foco já não responde ao que importa.",
   },
   {
     index: "03",
-    title: "Roteiro de 7 dias",
-    text: "Microinterrupções para gerar percepção imediata de autoria, presença e clareza antes da leitura integral da obra.",
+    title: "Interrupções práticas",
+    text: "Pequenos deslocamentos que devolvem autoria imediatamente, antes mesmo da leitura integral da obra.",
   },
   {
     index: "04",
-    title: "Ponte editorial para a Amazon",
-    text: "O dossiê termina conduzindo o leitor para o livro principal com muito mais maturidade de intenção e compatibilidade.",
+    title: "Continuidade natural",
+    text: "A obra principal surge como extensão lógica da leitura introdutória, não como imposição comercial.",
   },
 ];
 
@@ -122,7 +122,7 @@ const authoritySignals = [
   },
   {
     title: "Experiência vivida",
-    text: "Falência, dívidas, colapso físico e reconstrução. A autoridade nasce da travessia, não do autoelogio digital.",
+    text: "Autoridade construída fora do ambiente digital, a partir de experiências reais de reconstrução, risco e autonomia.",
   },
   {
     title: "Coerência de obra",
@@ -189,12 +189,12 @@ const faq = [
   {
     question: "O que acontece depois do cadastro?",
     answer:
-      "A experiência desta página já está desenhada para lead magnet + aquecimento + CTA final para Amazon. A integração de captura pode ser ligada ao seu provedor de e-mail ou automação na próxima etapa.",
+      "Depois do envio, o leitor acessa o material introdutório e pode seguir para a obra principal com mais contexto e compatibilidade. A integração final pode conectar essa etapa ao seu provedor de e-mail.",
   },
   {
     question: "Por que não mandar direto para a Amazon?",
     answer:
-      "Porque um leitor frio converte melhor quando entende contexto, tom, problema e valor da obra antes do clique de compra. A landing page reduz resistência e aumenta intenção.",
+      "Porque compreensão precede decisão. E decisão consciente converte melhor do que impulso.",
   },
   {
     question: "Preciso ler outros títulos antes?",
@@ -219,9 +219,9 @@ export default function Home() {
 
   const revealCopy = useMemo(
     () => ({
-      title: "Dossiê de Soberania Atencional",
+      title: "Antes da obra completa, um ponto de ruptura.",
       subtitle:
-        "Checklist editorial + mapa de revisão + roteiro de 7 dias para identificar onde sua vida está operando por reflexo, excesso de ruído ou ausência de eixo.",
+        "Um material curto, direto e estrutural para identificar onde sua vida está operando por reflexo, distração ou ausência de eixo.",
     }),
     []
   );
@@ -231,7 +231,7 @@ export default function Home() {
 
     if (!name.trim() || !email.trim()) {
       toast.error(
-        "Preencha nome e e-mail para ativar a próxima etapa da jornada."
+        "Preencha nome e e-mail para liberar o material introdutório."
       );
       return;
     }
@@ -247,7 +247,7 @@ export default function Home() {
     setSubmitted(true);
 
     toast.success(
-      "Cadastro preparado. Agora você já pode avançar para a obra principal."
+      "Acesso preparado. Agora você já pode avançar para a obra principal."
     );
 
     setTimeout(() => {
@@ -275,7 +275,7 @@ export default function Home() {
 
           <nav className="bonaparte-links" aria-label="Navegação principal">
             <a href="#diagnostico">Diagnóstico</a>
-            <a href="#dossie">Isca digital</a>
+            <a href="#dossie">Dossiê</a>
             <a href="#autoridade">Autor</a>
             <a href="#livro">Livro</a>
             <a href="#faq">FAQ</a>
@@ -309,10 +309,8 @@ export default function Home() {
                 viver no automático.
               </p>
               <p className="hero-lead">
-                Antes do clique para a Amazon, esta landing page faz o que o
-                marketplace sozinho não consegue: contextualiza o problema,
-                apresenta o valor do livro, qualifica o interesse e inicia a
-                construção de uma base própria de leitores de alta intenção.
+                Este não é um livro para motivar. É um mapa para interromper uma
+                vida funcional que nunca foi revisada com lucidez.
               </p>
 
               <div className="manifesto-grid">
@@ -336,20 +334,20 @@ export default function Home() {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  Receber o dossiê introdutório
+                  Acessar o dossiê introdutório
                 </Button>
                 <Button
                   className="bonaparte-button-secondary"
                   onClick={openAmazon}
                 >
-                  Ver o livro na Amazon
+                  Ver a obra
                 </Button>
               </div>
 
               <p className="hero-footnote">
-                Microcopy de confiança: sem pop-up vulgar, sem gatilho barato e
-                sem estética de guru. A proposta é editorial, sóbria e
-                estrategicamente desenhada para tráfego frio de alta exigência.
+                Sem pop-up vulgar, sem gatilho barato e sem estética de guru. A
+                proposta é editorial, sóbria e desenhada para leitores frios de
+                alta exigência.
               </p>
             </div>
 
@@ -427,10 +425,8 @@ export default function Home() {
               </h2>
             </div>
             <p>
-              Muita gente continua pagando contas, cumprindo tarefas e mantendo
-              a máquina girando. O colapso não é visível. É silencioso. A pessoa
-              segue funcional, porém distante do próprio centro — e chama isso
-              de rotina, maturidade ou normalidade.
+              Você continua funcionando. Mas já percebeu que funcionar bem não
+              significa viver com autoria.
             </p>
           </div>
 
@@ -467,8 +463,8 @@ export default function Home() {
             <div>
               <span className="section-label dark-on-paper">Transformação</span>
               <h2>
-                Sem promessas milagrosas. Com ganho real de entendimento,
-                critério e direção.
+                Não é sobre mudar sua vida. É sobre perceber que ela nunca foi
+                realmente sua.
               </h2>
             </div>
             <p>
@@ -492,9 +488,7 @@ export default function Home() {
         <section id="dossie" className="section-shell bonaparte-section">
           <div className="container lead-shell">
             <div className="lead-copy-side">
-              <span className="section-label">
-                Isca digital de alta intenção
-              </span>
+              <span className="section-label">Dossiê introdutório</span>
               <h2>{revealCopy.title}</h2>
               <p className="section-intro">{revealCopy.subtitle}</p>
 
@@ -517,13 +511,12 @@ export default function Home() {
             <aside id="captura" className="bonaparte-panel capture-card">
               <div>
                 <span className="section-label">
-                  Entrega imediata • nome + e-mail
+                  Acesso imediato • leitura introdutória
                 </span>
-                <h3>Receba a amostra e entre no ecossistema</h3>
+                <h3>Acesse o material introdutório</h3>
                 <p>
-                  Esta versão da página já preserva o lead localmente e está
-                  pronta para ser conectada à sua automação de e-mail, CRM ou
-                  fluxo de nurture na próxima etapa.
+                  Leitura imediata após envio. Sem ruído. Sem excesso. Apenas o
+                  necessário para discernir antes de avançar.
                 </p>
               </div>
 
@@ -534,7 +527,7 @@ export default function Home() {
                     value={name}
                     onChange={event => setName(event.target.value)}
                     type="text"
-                    placeholder="Seu primeiro nome"
+                    placeholder="Seu nome"
                     autoComplete="name"
                   />
                 </label>
@@ -544,7 +537,7 @@ export default function Home() {
                     value={email}
                     onChange={event => setEmail(event.target.value)}
                     type="email"
-                    placeholder="voce@empresa.com"
+                    placeholder="Seu melhor e-mail"
                     autoComplete="email"
                   />
                 </label>
@@ -552,29 +545,28 @@ export default function Home() {
                   type="submit"
                   className="bonaparte-button-primary bonaparte-button-block"
                 >
-                  Receber o dossiê e avançar para a obra
+                  Acessar o dossiê agora
                 </Button>
               </form>
 
               <div className="capture-proof bonaparte-panel-soft">
-                <h4>Por que essa arquitetura converte melhor</h4>
+                <h4>Por que esta sequência funciona melhor</h4>
                 <p>
-                  Porque ela não pede confiança no vazio. Primeiro demonstra
-                  repertório, método e utilidade prática. Depois convida o
-                  leitor a aprofundar a jornada no livro, reduzindo resistência
-                  de tráfego frio e elevando a qualidade do clique para a
-                  Amazon.
+                  Porque ela não pede confiança no vazio. Primeiro oferece
+                  clareza, utilidade e repertório. Depois convida o leitor a
+                  aprofundar a jornada no livro com muito mais maturidade de
+                  decisão.
                 </p>
               </div>
 
               {submitted ? (
                 <div className="capture-success">
-                  <strong>Cadastro preparado com sucesso.</strong>
+                  <strong>Acesso preparado com sucesso.</strong>
                   <p>
-                    O lead foi preservado nesta experiência e a jornada já abre
-                    a obra principal em nova aba. Na integração final, basta
-                    conectar o formulário ao seu provedor de e-mail para ativar
-                    entrega real do material.
+                    Seus dados foram preservados nesta experiência e a jornada
+                    já abre a obra principal em nova aba. Na integração final,
+                    basta conectar o formulário ao seu provedor de e-mail para
+                    ativar a entrega real do material.
                   </p>
                 </div>
               ) : null}
@@ -589,8 +581,8 @@ export default function Home() {
               <h2>Abnadaby Bonaparte não fala de torre. Fala de trincheira.</h2>
               <p className="section-intro">
                 A página apresenta o autor de forma sóbria: não como celebridade
-                digital, mas como alguém que pensa, observa e escreve a partir
-                de fricção real, colapso vivido e reconstrução consciente.
+                digital, mas como alguém cuja autoridade foi construída fora do
+                palco e testada na realidade.
               </p>
 
               <div className="authority-grid">
@@ -643,9 +635,7 @@ export default function Home() {
 
               <div className="book-stage-copy">
                 <span className="section-label">Vitrine premium</span>
-                <h3>
-                  Uma obra para leitores que exigem densidade, não distração.
-                </h3>
+                <h3>Um livro para quem já percebeu — mas ainda não nomeou.</h3>
                 <p>
                   Cartografia da Soberania Interior não tenta vender choque
                   emocional. Ela organiza uma travessia: do automatismo ao eixo,
@@ -777,10 +767,10 @@ export default function Home() {
                 Se o tema ressoar, não comece comprando. Comece discernindo.
               </h2>
               <p>
-                Receba a amostra, leia o dossiê e avalie a voz do autor com
-                calma. A Casa Bonaparte não precisa empurrar uma decisão.
-                Precisa construir um encontro de alta compatibilidade entre obra
-                e leitor.
+                Acesse o material introdutório, leia o dossiê e avalie a voz do
+                autor com calma. A Casa Bonaparte não precisa empurrar uma
+                decisão. Precisa construir um encontro de alta compatibilidade
+                entre obra e leitor.
               </p>
               <div className="hero-cta-row compact-row">
                 <Button
@@ -791,13 +781,13 @@ export default function Home() {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  Receber material gratuito
+                  Acessar o dossiê agora
                 </Button>
                 <Button
                   className="bonaparte-button-secondary"
                   onClick={openAmazon}
                 >
-                  Seguir para a Amazon
+                  Ver a obra na Amazon
                 </Button>
               </div>
             </div>
