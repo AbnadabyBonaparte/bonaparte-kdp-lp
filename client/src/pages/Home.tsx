@@ -1,18 +1,7 @@
 /*
-Design philosophy for this page: editorial noir contemporâneo com atmosfera de dossiê estratégico premium.
-Core reminders: assimetria nobre, hierarquia tipográfica forte, superfícies densas, imagens realistas cinematográficas,
-nenhum elemento vulgar de infoproduto, nenhuma estética genérica de SaaS, e toda decisão visual deve reforçar autoridade intelectual.
-
-AUDIT FIXES APPLIED (Apr 2026):
-- Removed all meta-copy (text describing the LP strategy instead of speaking to the reader)
-- Removed all developer notes visible to end users
-- Fixed manifestoCards to speak to reader pain/benefit
-- Fixed metrics row (removed internal strategy language)
-- Fixed hero paragraph 2
-- Fixed hero footnote
-- Fixed capture card description
-- Fixed capture success message
-- Fixed FAQ items 3 and 6
+VERSÃO FINAL — Casa Bonaparte KDP Landing Page
+Síntese de todas as revisões. Estrutura preservada. Linguagem do livro injetada.
+Sem meta-copy. Sem notas de dev. Sem cheiro de marketing.
 */
 
 import { FormEvent, useMemo, useState } from "react";
@@ -32,7 +21,6 @@ const visualAssets = {
     "https://d2xsxph8kpxj0f.cloudfront.net/310419663029192862/hDP4mJzmqgJQnadah6XUw6/bonaparte-manuscript-detail-7hpDk9PrDDHRFN28iyhA3t.webp",
 };
 
-// FIX 1: manifestoCards — removidos textos sobre a LP. Agora falam com o leitor.
 const manifestoCards = [
   {
     title: "Para quem produz sem parar",
@@ -48,22 +36,21 @@ const manifestoCards = [
   },
 ];
 
-// FIX 2: metrics — removida "Arquitetura do funil" (linguagem interna de estratégia).
 const metrics = [
   {
     label: "Para quem é",
     value:
-      "Leitores analíticos, profissionais e mentes exigentes que rejeitam superficialidade.",
+      "Profissionais, líderes e leitores exigentes que dominam a execução — mas se recusam a viver no automático.",
   },
   {
     label: "Promessa honesta",
     value:
-      "Mais autoria, critério e presença. Menos automatismo, ruído e vida terceirizada.",
+      "Mais autoria, critério e presença. Menos automatismo, ruído e vida conduzida por padrão.",
   },
   {
     label: "O que você leva",
     value:
-      "Uma dossiê gratuito com checklist, mapa de revisão e roteiro de 7 dias — antes de qualquer decisão de compra.",
+      "Um dossiê introdutório com três ferramentas de reconhecimento — antes de qualquer decisão de compra.",
   },
 ];
 
@@ -108,23 +95,23 @@ const promises = [
 const leadDeliverables = [
   {
     index: "01",
-    title: "Checklist de auditoria existencial",
-    text: "Para identificar áreas da vida que parecem escolha, mas na prática são herança, ruído ou hábito não examinado.",
+    title: "Padrões invisíveis",
+    text: "Identifique comportamentos que parecem decisão, mas são apenas continuidade de um projeto não examinado.",
   },
   {
     index: "02",
-    title: "Mapa de soberania atencional",
-    text: "Um quadro simples para diagnosticar fuga, fragmentação, distração e perda de cadência mental em contexto profissional.",
+    title: "Atenção sequestrada",
+    text: "Perceba onde sua energia está sendo consumida sem consciência — e sem retorno real.",
   },
   {
     index: "03",
-    title: "Roteiro de 7 dias",
-    text: "Microinterrupções para gerar percepção imediata de autoria, presença e clareza — antes da leitura integral da obra.",
+    title: "Pontos de ruptura",
+    text: "Pequenos deslocamentos que devolvem autoria de forma imediata, sem precisar reconstruir tudo.",
   },
   {
     index: "04",
-    title: "Acesso direto ao livro",
-    text: "Ao final do dossiê, você recebe um caminho direto para a obra completa na Amazon, com intenção mais madura de leitura.",
+    title: "Acesso direto à obra",
+    text: "Ao final do dossiê, o caminho para a obra completa na Amazon — com intenção de leitura já formada.",
   },
 ];
 
@@ -188,7 +175,6 @@ const quoteSignals = [
   "A soberania não é um estado alcançado. É uma prática contínua.",
 ];
 
-// FIX 3: FAQ — removidas perguntas internas de desenvolvimento (itens 3 e 6 corrigidos).
 const faq = [
   {
     question: "Isso é autoajuda?",
@@ -203,12 +189,12 @@ const faq = [
   {
     question: "O que acontece depois do cadastro?",
     answer:
-      "Você recebe o dossiê por e-mail com os três materiais: checklist de auditoria, mapa de soberania atencional e roteiro de 7 dias. Junto, vem um link direto para a obra completa na Amazon.",
+      "Você recebe o dossiê por e-mail com os três materiais: padrões invisíveis, mapa de atenção sequestrada e pontos de ruptura. Junto, vem o link direto para a obra completa na Amazon.",
   },
   {
-    question: "Por que não ir direto para a Amazon?",
+    question: "Por que começar pelo dossiê e não ir direto à Amazon?",
     answer:
-      "Porque um leitor que entende o contexto, o tom e o problema antes do clique toma uma decisão mais madura. O dossiê gratuito garante que a obra faça sentido para você antes de qualquer compra.",
+      "Porque a leitura com contexto é mais profunda. O dossiê prepara o terreno — identifica onde você está, o que carrega sem perceber, e o que a obra pode fazer por você antes de qualquer página virada.",
   },
   {
     question: "Preciso ler outros títulos antes?",
@@ -233,9 +219,9 @@ export default function Home() {
 
   const revealCopy = useMemo(
     () => ({
-      title: "Dossiê de Soberania Atencional",
+      title: "Dossiê Introdutório",
       subtitle:
-        "Checklist editorial + mapa de revisão + roteiro de 7 dias para identificar onde sua vida está operando por reflexo, excesso de ruído ou ausência de eixo.",
+        "Três ferramentas de reconhecimento para identificar onde sua vida está operando por inércia — mesmo quando parece escolha.",
     }),
     []
   );
@@ -244,7 +230,7 @@ export default function Home() {
     event.preventDefault();
 
     if (!name.trim() || !email.trim()) {
-      toast.error("Preencha nome e e-mail para receber o dossiê.");
+      toast.error("Preencha nome e e-mail para acessar o dossiê.");
       return;
     }
 
@@ -258,11 +244,11 @@ export default function Home() {
     localStorage.setItem("bonaparteLeadDraft", JSON.stringify(payload));
     setSubmitted(true);
 
-    toast.success("Dossiê enviado! Verifique seu e-mail em instantes.");
+    toast.success("Dossiê enviado. Verifique seu e-mail em instantes.");
 
     setTimeout(() => {
       openAmazon();
-    }, 1000);
+    }, 1200);
   }
 
   return (
@@ -285,9 +271,9 @@ export default function Home() {
 
           <nav className="bonaparte-links" aria-label="Navegação principal">
             <a href="#diagnostico">Diagnóstico</a>
-            <a href="#dossie">Material gratuito</a>
+            <a href="#dossie">Dossiê</a>
             <a href="#autoridade">Autor</a>
-            <a href="#livro">Livro</a>
+            <a href="#livro">Obra</a>
             <a href="#faq">FAQ</a>
           </nav>
 
@@ -299,32 +285,35 @@ export default function Home() {
                 ?.scrollIntoView({ behavior: "smooth" })
             }
           >
-            Receber o dossiê
+            Acessar o dossiê
           </Button>
         </div>
       </header>
 
       <main id="topo">
+        {/* ── HERO ─────────────────────────────────── */}
         <section className="bonaparte-hero section-shell">
           <div className="container bonaparte-hero-grid">
             <div className="bonaparte-hero-copy">
               <span className="section-label">Casa Bonaparte apresenta</span>
+
+              {/* HEADLINE FINAL — linguagem do livro, clara e forte */}
               <h1>
-                Pare de <span>funcionar</span> em um projeto que não é seu.
+                Você funciona bem.{" "}
+                <span>Mas já percebeu que não está vivendo?</span>
               </h1>
 
-              {/* FIX 4: Parágrafo 1 — mantido (bom). Parágrafo 2 — era meta-copy sobre a LP, agora fala com o leitor. */}
               <p className="hero-lead hero-lead-strong">
-                <strong>Cartografia da Soberania Interior</strong> é um ensaio
-                de alta densidade para profissionais, líderes, empreendedores e
-                leitores exigentes que já dominam a execução, mas se recusam a
-                viver no automático.
+                <strong>Cartografia da Soberania Interior</strong> não é um
+                livro sobre fazer mais.
               </p>
               <p className="hero-lead">
-                Antes de qualquer decisão de compra, receba gratuitamente um
-                dossiê com checklist, mapa de revisão e roteiro de 7 dias —
-                para que a obra faça sentido para você desde o primeiro
-                contato.
+                É sobre perceber que sua vida pode estar funcionando —
+                sem realmente ser habitada.
+              </p>
+              <p className="hero-lead">
+                Antes de decidir qualquer coisa, existe algo que você precisa
+                enxergar.
               </p>
 
               <div className="manifesto-grid">
@@ -348,7 +337,7 @@ export default function Home() {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  Receber o dossiê gratuito
+                  Acessar o dossiê introdutório
                 </Button>
                 <Button
                   className="bonaparte-button-secondary"
@@ -358,11 +347,10 @@ export default function Home() {
                 </Button>
               </div>
 
-              {/* FIX 5: Hero footnote — era texto de dev/estratégia. Agora é credibilidade real. */}
               <p className="hero-footnote">
-                Sem pop-up invasivo. Sem gatilho de escassez falsa. Sem
-                depoimento inventado. Aqui há substância — e você vai perceber
-                isso nos próximos dois minutos de leitura.
+                Sem pop-up invasivo. Sem escassez artificial. Sem linguagem de
+                vendedor. Se isso não fizer sentido para você, tudo bem — não
+                é o momento ainda. Se fizer, você já percebeu.
               </p>
             </div>
 
@@ -403,13 +391,13 @@ export default function Home() {
                   <figure className="bonaparte-photo-card bonaparte-panel">
                     <img
                       src={visualAssets.books}
-                      alt="Natureza morta editorial com livros técnicos e cadernos em uma mesa de madeira"
+                      alt="Natureza morta editorial com livros técnicos"
                     />
                   </figure>
                   <figure className="bonaparte-photo-card bonaparte-panel">
                     <img
                       src={visualAssets.manuscript}
-                      alt="Manuscrito comentado com pena e detalhes dourados em atmosfera sofisticada"
+                      alt="Manuscrito em atmosfera sofisticada"
                     />
                   </figure>
                 </div>
@@ -430,20 +418,20 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── DIAGNÓSTICO ──────────────────────────── */}
         <section id="diagnostico" className="section-shell bonaparte-section">
           <div className="container section-heading split-heading">
             <div>
               <span className="section-label">Diagnóstico</span>
               <h2>
-                O problema não é falta de produtividade. É excesso de vida
-                herdada.
+                A maioria das pessoas não está perdida.
+                Está funcional.
               </h2>
             </div>
             <p>
-              Muita gente continua pagando contas, cumprindo tarefas e mantendo
-              a máquina girando. O colapso não é visível. É silencioso. A pessoa
-              segue funcional, porém distante do próprio centro — e chama isso
-              de rotina, maturidade ou normalidade.
+              Cumpre tarefas. Mantém a rotina. Resolve o que precisa ser
+              resolvido. Mas vive uma forma silenciosa de ausência. Tudo opera.
+              Mas nem tudo pertence.
             </p>
           </div>
 
@@ -462,33 +450,33 @@ export default function Home() {
             </div>
 
             <aside className="quote-panel">
-              <span className="section-label dark-on-paper">Trecho-matriz</span>
+              <span className="section-label dark-on-paper">Ruptura</span>
               <blockquote>
-                A morte é um evento.
-                <br />A ausência é um processo.
+                O problema não é<br />falta de esforço.
+                <br />É mais profundo.
               </blockquote>
               <p>
-                O livro não dramatiza o colapso. Ele nomeia o problema invisível
-                de quem segue operando sem realmente habitar a própria vida.
+                Você pode estar vivendo um projeto que nunca foi realmente seu.
+                E isso não aparece como crise — aparece como rotina.
               </p>
             </aside>
           </div>
         </section>
 
+        {/* ── TRANSFORMAÇÃO ────────────────────────── */}
         <section className="section-shell bonaparte-section bonaparte-section-alt">
           <div className="container section-heading split-heading">
             <div>
               <span className="section-label dark-on-paper">Transformação</span>
               <h2>
-                Sem promessas milagrosas. Com ganho real de entendimento,
-                critério e direção.
+                Sem promessas milagrosas. Com ganho real de autoria, critério e
+                presença.
               </h2>
             </div>
             <p>
               Esta não é uma promessa de reinvenção instantânea. É uma proposta
-              mais séria: devolver ao leitor clareza para revisar sua
-              arquitetura interna, recuperar foco e sustentar decisões com mais
-              consciência.
+              mais séria: devolver ao leitor clareza para revisar sua arquitetura
+              interna e sustentar decisões com mais consciência.
             </p>
           </div>
 
@@ -502,12 +490,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── DOSSIÊ / CAPTURA ─────────────────────── */}
         <section id="dossie" className="section-shell bonaparte-section">
           <div className="container lead-shell">
             <div className="lead-copy-side">
-              <span className="section-label">
-                Material gratuito
-              </span>
+              <span className="section-label">Dossiê introdutório</span>
               <h2>{revealCopy.title}</h2>
               <p className="section-intro">{revealCopy.subtitle}</p>
 
@@ -530,15 +517,13 @@ export default function Home() {
             <aside id="captura" className="bonaparte-panel capture-card">
               <div>
                 <span className="section-label">
-                  Entrega imediata • gratuito
+                  Acesso imediato · gratuito
                 </span>
-                <h3>Receba o dossiê agora</h3>
-
-                {/* FIX 6: Descrição do capture card — era nota de desenvolvedor. Agora fala com o leitor. */}
+                <h3>Antes da obra completa,<br />um ponto de clareza.</h3>
                 <p>
-                  Preencha nome e e-mail. O dossiê chega na sua caixa de
-                  entrada em minutos — e você já pode avançar para a obra
-                  principal com muito mais clareza sobre o que encontrará.
+                  Preencha nome e e-mail. O dossiê chega na sua caixa em
+                  minutos — e você acessa a obra principal com muito mais
+                  nitidez sobre o que encontrará.
                 </p>
               </div>
 
@@ -567,28 +552,28 @@ export default function Home() {
                   type="submit"
                   className="bonaparte-button-primary bonaparte-button-block"
                 >
-                  Receber o dossiê e conhecer o livro
+                  Acessar o dossiê
                 </Button>
+                <p style={{ textAlign: "center", fontSize: "0.82rem", color: "var(--ink-muted)", margin: "0.4rem 0 0" }}>
+                  ↓ Leitura em menos de 5 minutos
+                </p>
               </form>
 
               <div className="capture-proof bonaparte-panel-soft">
                 <h4>Por que começar pelo dossiê?</h4>
                 <p>
                   Porque a leitura com contexto é mais profunda. O dossiê
-                  prepara o terreno — identifica onde você está, o que você
-                  carrega sem perceber e o que a obra pode fazer por você antes
-                  de qualquer página virada.
+                  prepara o terreno — e garante que você saiba exatamente o que
+                  encontrará antes de virar a primeira página.
                 </p>
               </div>
 
-              {/* FIX 7: Success message — era nota de dev. Agora é copy de usuário real. */}
               {submitted ? (
                 <div className="capture-success">
                   <strong>Dossiê a caminho.</strong>
                   <p>
-                    Verifique sua caixa de entrada — o material chega em
-                    instantes. Enquanto isso, a obra completa está disponível na
-                    Amazon.
+                    Verifique sua caixa de entrada. A obra completa já está
+                    abrindo em nova aba.
                   </p>
                 </div>
               ) : null}
@@ -596,6 +581,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── AUTORIDADE ───────────────────────────── */}
         <section id="autoridade" className="section-shell bonaparte-section">
           <div className="container authority-layout">
             <article className="bonaparte-panel authority-card-main">
@@ -624,7 +610,7 @@ export default function Home() {
             <aside className="authority-visual bonaparte-panel">
               <img
                 src={visualAssets.library}
-                alt="Biblioteca privada em atmosfera escura e elegante com mesa de leitura iluminada"
+                alt="Biblioteca privada em atmosfera escura e elegante"
               />
               <div className="authority-overlay">
                 <span className="micro-label">Lógica de marca</span>
@@ -637,12 +623,13 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── LIVRO ────────────────────────────────── */}
         <section id="livro" className="section-shell bonaparte-section">
           <div className="container book-layout">
             <article className="bonaparte-panel book-stage">
               <div className="book-stage-cover">
                 <div className="book-stage-object">
-                  <span className="micro-label">Livro principal</span>
+                  <span className="micro-label">Obra principal</span>
                   <h2>Cartografia da Soberania Interior</h2>
                   <p>
                     Arquitetura existencial para quem se recusa a viver no
@@ -659,13 +646,12 @@ export default function Home() {
               <div className="book-stage-copy">
                 <span className="section-label">A obra</span>
                 <h3>
-                  Uma obra para leitores que exigem densidade, não distração.
+                  Para leitores que exigem densidade — não distração.
                 </h3>
                 <p>
-                  Cartografia da Soberania Interior não tenta vender choque
-                  emocional. Ela organiza uma travessia: do automatismo ao eixo,
-                  do excesso herdado à escolha consciente e da vida funcional à
-                  presença deliberada.
+                  Esta obra não tenta vender choque emocional. Ela organiza uma
+                  travessia: do automatismo ao eixo, do excesso herdado à escolha
+                  consciente, da vida funcional à presença deliberada.
                 </p>
 
                 <div className="book-benefit-list">
@@ -685,7 +671,7 @@ export default function Home() {
                     className="bonaparte-button-primary"
                     onClick={openAmazon}
                   >
-                    Ler na Amazon
+                    Acessar na Amazon
                   </Button>
                   <Button
                     className="bonaparte-button-secondary"
@@ -695,7 +681,7 @@ export default function Home() {
                         ?.scrollIntoView({ behavior: "smooth" })
                     }
                   >
-                    Baixar o dossiê primeiro
+                    Começar pelo dossiê
                   </Button>
                 </div>
               </div>
@@ -706,9 +692,9 @@ export default function Home() {
                 <span className="section-label">Catálogo Bonaparte</span>
                 <h3>Uma obra dentro de um universo maior.</h3>
                 <p>
-                  Cartografia da Soberania Interior integra um corpo editorial
-                  coerente — cada título aprofundando um eixo do mesmo universo
-                  de pensamento.
+                  Cada título aprofunda um eixo do mesmo universo de
+                  pensamento. Quem lê um costuma reconhecer a voz — e
+                  continuar.
                 </p>
               </div>
               <div className="ecosystem-grid">
@@ -726,6 +712,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── TRECHOS ──────────────────────────────── */}
         <section className="section-shell bonaparte-section bonaparte-section-alt">
           <div className="container section-heading split-heading">
             <div>
@@ -733,8 +720,7 @@ export default function Home() {
                 Trechos da obra
               </span>
               <h2>
-                Profundidade se percebe no corte do argumento e na coragem de
-                não simplificar o que é sério.
+                Profundidade se percebe no corte do argumento.
               </h2>
             </div>
             <p>
@@ -753,6 +739,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── FAQ ──────────────────────────────────── */}
         <section id="faq" className="section-shell bonaparte-section">
           <div className="container section-heading split-heading">
             <div>
@@ -782,18 +769,21 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── FECHAMENTO ───────────────────────────── */}
         <section className="section-shell bonaparte-section bonaparte-final-section">
           <div className="container final-shell">
             <div className="final-copy bonaparte-panel">
-              <span className="section-label">Próximo passo</span>
+              <span className="section-label">Decisão</span>
               <h2>
-                Se o tema ressoar, não comece comprando. Comece discernindo.
+                O maior risco da vida não é errar.
+                É funcionar perfeitamente em um projeto que não é seu.
               </h2>
               <p>
-                Receba o dossiê, leia o material e avalie a voz do autor com
-                calma. A Casa Bonaparte não precisa empurrar uma decisão —
-                precisa criar um encontro de alta compatibilidade entre obra e
-                leitor.
+                Se isso não te atravessou, talvez ainda não seja o momento.
+              </p>
+              <p>
+                Mas se atravessou — você já percebeu que continuar como está
+                tem um custo. E ele não aparece de imediato.
               </p>
               <div className="hero-cta-row compact-row">
                 <Button
@@ -804,7 +794,7 @@ export default function Home() {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  Receber o dossiê gratuito
+                  Acessar o dossiê introdutório
                 </Button>
                 <Button
                   className="bonaparte-button-secondary"
