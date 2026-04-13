@@ -668,17 +668,17 @@ export default function Home() {
           <div className="container book-layout">
             <article className="bonaparte-panel book-stage">
               <div className="book-stage-cover">
-                <div className="book-stage-cover-frame">
-                  <img
-                    className="bonaparte-img-cover book-cover-image"
-                    src={visualAssets.cover}
-                    alt="Capa do e-book Cartografia da Soberania Interior — Arquitetura existencial para quem se recusa a viver no automático"
-                    width={800}
-                    height={1280}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+                <img
+                  src={visualAssets.cover}
+                  alt="Capa do livro Cartografia da Soberania Interior"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center top",
+                    display: "block",
+                  }}
+                />
               </div>
 
               <div className="book-stage-copy">
