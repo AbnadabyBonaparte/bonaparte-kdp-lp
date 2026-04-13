@@ -4,7 +4,7 @@ Síntese de todas as revisões. Estrutura preservada. Linguagem do livro injetad
 Sem meta-copy. Sem notas de dev. Sem cheiro de marketing.
 */
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
@@ -12,13 +12,11 @@ const AMAZON_URL =
   "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=KVZNB34NV1WM&dib=eyJ2IjoiMSJ9.j2Dwdvr5_2gPdrDpjyqeXc2hJoKFrhTo0wXkotRxiHg0CEUZ7jIApfoUbXbTJARAZO-bsJZkg-SUzs85fnPD6g.yq6SVfcIWA-aG4f8qAGRJ48dj1gW1gvL0NSlFHKC1kk&dib_tag=se&keywords=abnadaby&qid=1776087491&sprefix=abnadaby%2Caps%2C211&sr=8-5";
 
 const visualAssets = {
-  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310419663029192862/hDP4mJzmqgJQnadah6XUw6/bonaparte-hero-editorial-noir-jmRHRwBjZnqZLUGiEbnrvf.webp",
-  books:
-    "https://d2xsxph8kpxj0f.cloudfront.net/310419663029192862/hDP4mJzmqgJQnadah6XUw6/bonaparte-book-still-life-Y8yQ9Eq6aTP5znxwLQ9QJA.webp",
-  library:
-    "https://d2xsxph8kpxj0f.cloudfront.net/310419663029192862/hDP4mJzmqgJQnadah6XUw6/bonaparte-library-atmosphere-bV6N6AT28WqMPe7KhufUFX.webp",
-  manuscript:
-    "https://d2xsxph8kpxj0f.cloudfront.net/310419663029192862/hDP4mJzmqgJQnadah6XUw6/bonaparte-manuscript-detail-7hpDk9PrDDHRFN28iyhA3t.webp",
+  hero: "/images/hero.jpg",
+  books: "/images/books.jpg",
+  library: "/images/library.jpg",
+  manuscript: "/images/manuscript.jpg",
+  cover: "/images/cartografia-capa.jpg",
 };
 
 const manifestoCards = [
@@ -251,6 +249,23 @@ export default function Home() {
     }, 1200);
   }
 
+  useEffect(() => {
+    const elements = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+    );
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="bonaparte-shell min-h-screen overflow-x-hidden">
       <div className="bonaparte-grain" aria-hidden="true" />
@@ -292,7 +307,7 @@ export default function Home() {
 
       <main id="topo">
         {/* ── HERO ─────────────────────────────────── */}
-        <section className="bonaparte-hero section-shell">
+        <section className="bonaparte-hero section-shell fade-in">
           <div className="container bonaparte-hero-grid">
             <div className="bonaparte-hero-copy">
               <span className="section-label">Casa Bonaparte apresenta</span>
@@ -360,8 +375,12 @@ export default function Home() {
             >
               <div className="hero-visual-main">
                 <img
+                  className="bonaparte-img-cover"
                   src={visualAssets.hero}
                   alt="Mesa de estudo noturna com livros, manuscritos e iluminação cinematográfica"
+                  width={1600}
+                  height={1200}
+                  decoding="async"
                 />
                 <div className="hero-visual-overlay-card overlay-card-top">
                   <span className="micro-label">Subtítulo da obra</span>
@@ -390,14 +409,24 @@ export default function Home() {
                 <div className="hero-visual-stack">
                   <figure className="bonaparte-photo-card bonaparte-panel">
                     <img
-                      src={visualAssets.books}
-                      alt="Natureza morta editorial com livros técnicos"
+                      className="bonaparte-img-stack"
+                      src={visualAssets.manuscript}
+                      alt="Manuscrito em atmosfera sofisticada"
+                      width={800}
+                      height={1000}
+                      loading="lazy"
+                      decoding="async"
                     />
                   </figure>
                   <figure className="bonaparte-photo-card bonaparte-panel">
                     <img
-                      src={visualAssets.manuscript}
-                      alt="Manuscrito em atmosfera sofisticada"
+                      className="bonaparte-img-stack"
+                      src={visualAssets.books}
+                      alt="Natureza morta editorial com livros técnicos"
+                      width={800}
+                      height={1000}
+                      loading="lazy"
+                      decoding="async"
                     />
                   </figure>
                 </div>
@@ -419,7 +448,10 @@ export default function Home() {
         </section>
 
         {/* ── DIAGNÓSTICO ──────────────────────────── */}
-        <section id="diagnostico" className="section-shell bonaparte-section">
+        <section
+          id="diagnostico"
+          className="section-shell bonaparte-section fade-in"
+        >
           <div className="container section-heading split-heading">
             <div>
               <span className="section-label">Diagnóstico</span>
@@ -464,7 +496,7 @@ export default function Home() {
         </section>
 
         {/* ── TRANSFORMAÇÃO ────────────────────────── */}
-        <section className="section-shell bonaparte-section bonaparte-section-alt">
+        <section className="section-shell bonaparte-section bonaparte-section-alt fade-in">
           <div className="container section-heading split-heading">
             <div>
               <span className="section-label dark-on-paper">Transformação</span>
@@ -491,7 +523,7 @@ export default function Home() {
         </section>
 
         {/* ── DOSSIÊ / CAPTURA ─────────────────────── */}
-        <section id="dossie" className="section-shell bonaparte-section">
+        <section id="dossie" className="section-shell bonaparte-section fade-in">
           <div className="container lead-shell">
             <div className="lead-copy-side">
               <span className="section-label">Dossiê introdutório</span>
@@ -582,7 +614,10 @@ export default function Home() {
         </section>
 
         {/* ── AUTORIDADE ───────────────────────────── */}
-        <section id="autoridade" className="section-shell bonaparte-section">
+        <section
+          id="autoridade"
+          className="section-shell bonaparte-section fade-in"
+        >
           <div className="container authority-layout">
             <article className="bonaparte-panel authority-card-main">
               <span className="section-label">Autoridade editorial</span>
@@ -609,8 +644,13 @@ export default function Home() {
 
             <aside className="authority-visual bonaparte-panel">
               <img
+                className="bonaparte-img-cover"
                 src={visualAssets.library}
                 alt="Biblioteca privada em atmosfera escura e elegante"
+                width={1200}
+                height={900}
+                loading="lazy"
+                decoding="async"
               />
               <div className="authority-overlay">
                 <span className="micro-label">Lógica de marca</span>
@@ -624,22 +664,20 @@ export default function Home() {
         </section>
 
         {/* ── LIVRO ────────────────────────────────── */}
-        <section id="livro" className="section-shell bonaparte-section">
+        <section id="livro" className="section-shell bonaparte-section fade-in">
           <div className="container book-layout">
             <article className="bonaparte-panel book-stage">
               <div className="book-stage-cover">
-                <div className="book-stage-object">
-                  <span className="micro-label">Obra principal</span>
-                  <h2>Cartografia da Soberania Interior</h2>
-                  <p>
-                    Arquitetura existencial para quem se recusa a viver no
-                    automático.
-                  </p>
-                  <div className="book-stage-meta">
-                    <span>Ensaio editorial</span>
-                    <span>Casa Bonaparte</span>
-                    <span>E-book Amazon</span>
-                  </div>
+                <div className="book-stage-cover-frame">
+                  <img
+                    className="bonaparte-img-cover book-cover-image"
+                    src={visualAssets.cover}
+                    alt="Capa do e-book Cartografia da Soberania Interior — Arquitetura existencial para quem se recusa a viver no automático"
+                    width={800}
+                    height={1280}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
 
@@ -713,7 +751,7 @@ export default function Home() {
         </section>
 
         {/* ── TRECHOS ──────────────────────────────── */}
-        <section className="section-shell bonaparte-section bonaparte-section-alt">
+        <section className="section-shell bonaparte-section bonaparte-section-alt fade-in">
           <div className="container section-heading split-heading">
             <div>
               <span className="section-label dark-on-paper">
@@ -740,7 +778,7 @@ export default function Home() {
         </section>
 
         {/* ── FAQ ──────────────────────────────────── */}
-        <section id="faq" className="section-shell bonaparte-section">
+        <section id="faq" className="section-shell bonaparte-section fade-in">
           <div className="container section-heading split-heading">
             <div>
               <span className="section-label">Perguntas frequentes</span>
@@ -770,22 +808,24 @@ export default function Home() {
         </section>
 
         {/* ── FECHAMENTO ───────────────────────────── */}
-        <section className="section-shell bonaparte-section bonaparte-final-section">
+        <section className="section-shell bonaparte-section bonaparte-final-section fade-in">
           <div className="container final-shell">
             <div className="final-copy bonaparte-panel">
-              <span className="section-label">Decisão</span>
-              <h2>
+              <h2 className="final-heading">
                 O maior risco da vida não é errar.
-                É funcionar perfeitamente em um projeto que não é seu.
               </h2>
               <p>
-                Se isso não te atravessou, talvez ainda não seja o momento.
+                Se você chegou até aqui,
+                <br />
+                não foi por curiosidade.
               </p>
-              <p>
-                Mas se atravessou — você já percebeu que continuar como está
-                tem um custo. E ele não aparece de imediato.
+              <p>Foi reconhecimento.</p>
+              <p className="highlight">
+                E depois disso,
+                <br />
+                não dá mais para não ver.
               </p>
-              <div className="hero-cta-row compact-row">
+              <div className="hero-cta-row compact-row final-cta-single">
                 <Button
                   className="bonaparte-button-primary"
                   onClick={() =>
@@ -794,21 +834,27 @@ export default function Home() {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  Acessar o dossiê introdutório
-                </Button>
-                <Button
-                  className="bonaparte-button-secondary"
-                  onClick={openAmazon}
-                >
-                  Ir direto para a Amazon
+                  Acessar o dossiê agora
                 </Button>
               </div>
+              <p className="microcopy">
+                Leitura imediata.
+                <br />
+                Sem distração.
+                <br />
+                Sem excesso.
+              </p>
             </div>
 
             <figure className="final-visual bonaparte-panel">
               <img
+                className="bonaparte-img-cover"
                 src={visualAssets.hero}
                 alt="Composição editorial escura com mesa de escrita, livros e luz âmbar"
+                width={1600}
+                height={1200}
+                loading="lazy"
+                decoding="async"
               />
             </figure>
           </div>
