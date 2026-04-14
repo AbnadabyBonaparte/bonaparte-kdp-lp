@@ -151,18 +151,30 @@ const ecosystem = [
   {
     title: "O Código da Ascensão",
     text: "Estrutura prática de elevação da consciência, visão transformadora e engenharia aplicada de vida.",
+    cover: "/images/codigo-ascensao.jpg",
+    amazonUrl:
+      "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   },
   {
     title: "Burnout — Versão Definitiva",
     text: "Manual biológico e psicológico da sobrevivência moderna, entre colapso, corpo e reconstrução.",
+    cover: "/images/burnout-cura-natural.jpg",
+    amazonUrl:
+      "https://www.amazon.com.br/Cura-Natural-Burnout-Estresse-Exaust%C3%A3o-ebook/dp/B0GWSCKZCC",
   },
   {
     title: "Filhos da Prússia",
     text: "Análise histórica-identitária sobre formação cultural, disciplina e condicionamento coletivo.",
+    cover: "/images/filhos-prussia.jpg",
+    amazonUrl:
+      "https://www.amazon.com.br/FILHOS-PR%C3%9ASSIA-Voc%C3%AA-constru%C3%ADdo-educado-ebook/dp/B0GWSKJK92",
   },
   {
     title: "Heimat",
     text: "Obra metafísica-literária sobre pertencimento, transcendência e a possibilidade de casa interior.",
+    cover: "/images/heimat.jpg",
+    amazonUrl:
+      "https://www.amazon.com.br/HEIMAT-Animal-Ancestral-Humano-Opcional-ebook/dp/B0GWWS17TF",
   },
 ];
 
@@ -743,8 +755,31 @@ export default function Home() {
                     key={item.title}
                     className="bonaparte-panel ecosystem-card"
                   >
+                    <a
+                      href={item.amazonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ecosystem-card-cover"
+                    >
+                      <img
+                        src={item.cover}
+                        alt={`Capa do e-book ${item.title}`}
+                        width={400}
+                        height={600}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
                     <h4>{item.title}</h4>
                     <p>{item.text}</p>
+                    <a
+                      href={item.amazonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ecosystem-card-cta"
+                    >
+                      Ver na Amazon
+                    </a>
                   </article>
                 ))}
               </div>

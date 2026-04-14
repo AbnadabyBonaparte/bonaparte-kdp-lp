@@ -1285,6 +1285,51 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     gap: 0.9rem;
   }
 
+  .ecosystem-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .ecosystem-card-cover {
+    display: block;
+    align-self: center;
+    width: 100%;
+    max-width: 11rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(214, 186, 124, 0.2);
+    aspect-ratio: 2 / 3;
+    flex-shrink: 0;
+    line-height: 0;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .ecosystem-card-cover:hover {
+    border-color: rgba(214, 186, 124, 0.38);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .ecosystem-card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ecosystem-card-cta {
+    margin-top: auto;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--bronze);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ecosystem-card-cta:hover {
+    text-decoration: underline;
+  }
+
   .quote-signal-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
