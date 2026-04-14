@@ -15,7 +15,7 @@ const visualAssets = {
   hero: "/images/hero.jpg",
   books: "/images/books.jpg",
   library: "/images/library.jpg",
-  manuscript: "/images/manuscript.jpg",
+  manuscript: "/images/library.jpg",
   cover: "/images/cartografia-capa.jpg",
 };
 
@@ -427,7 +427,7 @@ export default function Home() {
                     <img
                       className="bonaparte-img-stack"
                       src={visualAssets.manuscript}
-                      alt="Manuscrito em atmosfera sofisticada"
+                      alt="Biblioteca e ambiente de leitura em tons escuros"
                       width={800}
                       height={1000}
                       loading="lazy"
