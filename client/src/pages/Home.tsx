@@ -15,7 +15,7 @@ const visualAssets = {
   hero: "/images/hero.jpg",
   books: "/images/books.jpg",
   library: "/images/library.jpg",
-  manuscript: "/images/manuscript.jpg",
+  manuscript: "/images/bonaparte-manuscript-square.jpg",
   cover: "/images/cartografia-capa.jpg",
 };
 
