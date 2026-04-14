@@ -1,0 +1,14 @@
+---
+description: GitHub como fonte da verdade antes de push
+alwaysApply: true
+---
+
+# Git — repositório-mãe (GitHub)
+
+O remoto `origin` no GitHub é a referência. Antes de qualquer **`git push`** neste projeto:
+
+1. Executar **`git fetch origin`**.
+2. Comparar **`main`** local com **`origin/main`** (por exemplo `git log --oneline HEAD..origin/main` e `origin/main..HEAD`).
+3. Se existirem commits em `origin/main` que não estão na máquina local, integrar com **`git pull --rebase origin main`** (ou o fluxo que o utilizador preferir) **antes** de fazer push.
+4. Só então **`git push`**.
+5. Preferir o script **`npm run push:safe`** quando for para enviar `main`, para não saltar estes passos.
