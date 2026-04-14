@@ -1,4 +1,7 @@
 {
   "outputDirectory": "dist/public",
-  "buildCommand": "pnpm run build"
+  "buildCommand": "pnpm run build",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" }
+  ]
 }
