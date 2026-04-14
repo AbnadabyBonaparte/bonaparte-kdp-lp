@@ -685,17 +685,13 @@ export default function Home() {
             <article className="bonaparte-panel book-stage">
               <div className="book-stage-cover">
                 <img
+                  className="bonaparte-img-cover book-cover-main"
                   src={visualAssets.cover}
                   alt="Capa do livro Cartografia da Soberania Interior"
+                  width={800}
+                  height={1280}
                   loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center top",
-                    display: "block",
-                    borderRadius: "1.75rem",
-                  }}
+                  decoding="async"
                 />
               </div>
 

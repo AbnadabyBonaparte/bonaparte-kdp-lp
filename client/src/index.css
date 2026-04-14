@@ -1188,8 +1188,24 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     align-items: stretch;
   }
 
+  .book-stage.bonaparte-panel {
+    overflow: visible;
+  }
+
+  .book-stage-cover .book-cover-main.bonaparte-img-cover {
+    width: 100%;
+    height: auto;
+    max-width: min(24rem, 100%);
+    max-height: min(46rem, 82vh);
+    object-fit: contain;
+    object-position: center;
+    border-radius: 1.35rem;
+    margin-inline: auto;
+  }
+
   .book-stage-cover {
     min-height: min(33rem, 85vh);
+    padding: 1rem 0.85rem;
     border-radius: 1.75rem;
     background:
       linear-gradient(
