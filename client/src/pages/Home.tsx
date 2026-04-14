@@ -154,28 +154,28 @@ function publicImageFile(name: string) {
 const ecosystem = [
   {
     title: "O Código da Ascensão",
-    text: "Estrutura prática de elevação da consciência, visão transformadora e engenharia aplicada de vida.",
+    text: "Manifesto de Engenharia Existencial e Soberania Digital",
     cover: publicImageFile("o codigo da ascençao.jpg"),
     amazonUrl:
       "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   },
   {
-    title: "Burnout — Versão Definitiva",
-    text: "Manual biológico e psicológico da sobrevivência moderna, entre colapso, corpo e reconstrução.",
+    title: "Cura Natural para Burnout, Estresse e Exaustão",
+    text: "Guia Prático para Recuperar Sua Energia, Clareza Mental e Estabilidade Emocional",
     cover: "/images/burnout.png",
     amazonUrl:
       "https://www.amazon.com.br/Cura-Natural-Burnout-Estresse-Exaust%C3%A3o-ebook/dp/B0GWSCKZCC",
   },
   {
     title: "Filhos da Prússia",
-    text: "Análise histórica-identitária sobre formação cultural, disciplina e condicionamento coletivo.",
+    text: "Você foi construído. Não educado.",
     cover: "/images/filho_da_prussia.jpg",
     amazonUrl:
       "https://www.amazon.com.br/FILHOS-PR%C3%9ASSIA-Voc%C3%AA-constru%C3%ADdo-educado-ebook/dp/B0GWSKJK92",
   },
   {
     title: "Heimat",
-    text: "Obra metafísica-literária sobre pertencimento, transcendência e a possibilidade de casa interior.",
+    text: "O Animal Ancestral e o Humano Opcional",
     cover: "/images/heimat.jpg",
     amazonUrl:
       "https://www.amazon.com.br/HEIMAT-Animal-Ancestral-Humano-Opcional-ebook/dp/B0GWWS17TF",
