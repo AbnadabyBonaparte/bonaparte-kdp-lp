@@ -745,7 +745,7 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
   }
 

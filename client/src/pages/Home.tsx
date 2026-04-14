@@ -12,10 +12,10 @@ const AMAZON_URL =
   "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=KVZNB34NV1WM&dib=eyJ2IjoiMSJ9.j2Dwdvr5_2gPdrDpjyqeXc2hJoKFrhTo0wXkotRxiHg0CEUZ7jIApfoUbXbTJARAZO-bsJZkg-SUzs85fnPD6g.yq6SVfcIWA-aG4f8qAGRJ48dj1gW1gvL0NSlFHKC1kk&dib_tag=se&keywords=abnadaby&qid=1776087491&sprefix=abnadaby%2Caps%2C211&sr=8-5";
 
 const visualAssets = {
-  hero: "/images/hero.jpg",
+  hero: "/images/bonaparte-hero-desk-editorial.jpg",
   books: "/images/books.jpg",
   library: "/images/library.jpg",
-  manuscript: "/images/library.jpg",
+  manuscript: "/images/bonaparte-manuscript-square.jpg",
   cover: "/images/cartografia-capa.jpg",
 };
 
@@ -393,7 +393,7 @@ export default function Home() {
                 <img
                   className="bonaparte-img-cover"
                   src={visualAssets.hero}
-                  alt="Mesa de estudo noturna com livros, manuscritos e iluminação cinematográfica"
+                  alt="Escrivaninha editorial com cartas manuscritas, caneta e luz quente"
                   width={1600}
                   height={1200}
                   decoding="async"
@@ -427,7 +427,7 @@ export default function Home() {
                     <img
                       className="bonaparte-img-stack"
                       src={visualAssets.manuscript}
-                      alt="Biblioteca e ambiente de leitura em tons escuros"
+                      alt="Manuscrito aberto com selos de cera e caneta-tinteiro"
                       width={800}
                       height={1000}
                       loading="lazy"
