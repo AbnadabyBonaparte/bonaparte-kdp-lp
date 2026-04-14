@@ -246,7 +246,8 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
   }
 
   .hero-visual-stack .bonaparte-img-stack {
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 
   a {
