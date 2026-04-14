@@ -1,5 +1,7 @@
 // api/send-dossie.js
-// Vercel Serverless Function — receives email, sends dossiê via Resend
+// Vercel Serverless Function — receives email (+ nome/whatsapp), envia dossiê via Resend.
+// Notificação de lead (texto): por defeito abnadabybonaparte@gmail.com;
+// opcional: LEAD_NOTIFY_EMAIL para outro destinatário.
 
 export default async function handler(req, res) {
   // CORS headers
@@ -15,11 +17,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  const { email, name, whatsapp } = req.body || {};
 
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Email inválido' });
   }
+
+  const leadName = typeof name === 'string' ? name.trim() : '';
+  const leadWhatsapp = typeof whatsapp === 'string' ? whatsapp.trim() : '';
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
@@ -28,16 +33,20 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Configuração do servidor incompleta' });
   }
 
+  // Resend exige User-Agent em pedidos HTTP diretos (sem SDK); sem isto devolve 403 / 1010.
+  const resendHeaders = {
+    'Authorization': `Bearer ${RESEND_API_KEY}`,
+    'Content-Type': 'application/json',
+    'User-Agent': 'bonaparte-kdp-lp/1.0 (https://github.com/AbnadabyBonaparte/bonaparte-kdp-lp)',
+  };
+
   // URL do dossiê (hosted in public/)
   const DOSSIE_URL = 'https://bonaparte-kdp-lp.vercel.app/dossie-casa-bonaparte.pdf';
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: resendHeaders,
       body: JSON.stringify({
         from: 'Casa Bonaparte <onboarding@resend.dev>',
         to: email,
@@ -139,6 +148,35 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
+
+    const leadNotify =
+      process.env.LEAD_NOTIFY_EMAIL || 'abnadabybonaparte@gmail.com';
+    const leadSummary = [
+      'Novo lead — Dossiê Casa Bonaparte',
+      `Nome: ${leadName || '—'}`,
+      `E-mail: ${email}`,
+      `WhatsApp: ${leadWhatsapp || '—'}`,
+    ].join('\n');
+
+    try {
+      const notifyRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: resendHeaders,
+        body: JSON.stringify({
+          from: 'Casa Bonaparte <onboarding@resend.dev>',
+          to: leadNotify,
+          subject: `Lead dossiê: ${email}`,
+          text: leadSummary,
+        }),
+      });
+      if (!notifyRes.ok) {
+        const errBody = await notifyRes.text();
+        console.error('Lead notify email rejected:', notifyRes.status, errBody);
+      }
+    } catch (notifyErr) {
+      console.error('Lead notify email failed:', notifyErr);
+    }
+
     return res.status(200).json({ success: true, id: data.id });
 
   } catch (error) {

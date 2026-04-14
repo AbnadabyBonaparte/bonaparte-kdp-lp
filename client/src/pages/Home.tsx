@@ -228,6 +228,7 @@ function openAmazon() {
 export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -243,7 +244,7 @@ export default function Home() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email) return;
+    if (!name.trim() || !email.trim() || !whatsapp.trim()) return;
 
     setStatus("loading");
 
@@ -251,12 +252,18 @@ export default function Home() {
       const res = await fetch("/api/send-dossie", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email: email.trim(),
+          name: name.trim(),
+          whatsapp: whatsapp.trim(),
+        }),
       });
 
       if (res.ok) {
         setStatus("success");
         setEmail("");
+        setName("");
+        setWhatsapp("");
       } else {
         setStatus("error");
       }
@@ -569,8 +576,8 @@ export default function Home() {
                 </span>
                 <h3>Antes da obra completa,<br />um ponto de clareza.</h3>
                 <p>
-                  Preencha nome e e-mail. O dossiê chega na sua caixa em
-                  minutos — e você acessa a obra principal com muito mais
+                  Preencha nome, e-mail e WhatsApp. O dossiê chega na sua caixa
+                  em minutos — e você acessa a obra principal com muito mais
                   nitidez sobre o que encontrará.
                 </p>
               </div>
@@ -594,6 +601,17 @@ export default function Home() {
                     type="email"
                     placeholder="voce@empresa.com"
                     autoComplete="email"
+                  />
+                </label>
+                <label>
+                  <span>WhatsApp</span>
+                  <input
+                    value={whatsapp}
+                    onChange={event => setWhatsapp(event.target.value)}
+                    type="tel"
+                    placeholder="+55 11 99999-9999"
+                    autoComplete="tel"
+                    inputMode="tel"
                   />
                 </label>
                 <Button
