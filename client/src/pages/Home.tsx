@@ -147,25 +147,29 @@ const bookBenefits = [
   },
 ];
 
+function publicImageFile(name: string) {
+  return `/images/${encodeURIComponent(name)}`;
+}
+
 const ecosystem = [
   {
     title: "O Código da Ascensão",
     text: "Estrutura prática de elevação da consciência, visão transformadora e engenharia aplicada de vida.",
-    cover: "/images/codigo-ascensao.jpg",
+    cover: publicImageFile("o codigo da ascençao.jpg"),
     amazonUrl:
       "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   },
   {
     title: "Burnout — Versão Definitiva",
     text: "Manual biológico e psicológico da sobrevivência moderna, entre colapso, corpo e reconstrução.",
-    cover: "/images/burnout-cura-natural.jpg",
+    cover: "/images/burnout.png",
     amazonUrl:
       "https://www.amazon.com.br/Cura-Natural-Burnout-Estresse-Exaust%C3%A3o-ebook/dp/B0GWSCKZCC",
   },
   {
     title: "Filhos da Prússia",
     text: "Análise histórica-identitária sobre formação cultural, disciplina e condicionamento coletivo.",
-    cover: "/images/filhos-prussia.jpg",
+    cover: "/images/filho_da_prussia.jpg",
     amazonUrl:
       "https://www.amazon.com.br/FILHOS-PR%C3%9ASSIA-Voc%C3%AA-constru%C3%ADdo-educado-ebook/dp/B0GWSKJK92",
   },
