@@ -6,7 +6,6 @@ Sem meta-copy. Sem notas de dev. Sem cheiro de marketing.
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 
 const AMAZON_URL =
   "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=KVZNB34NV1WM&dib=eyJ2IjoiMSJ9.j2Dwdvr5_2gPdrDpjyqeXc2hJoKFrhTo0wXkotRxiHg0CEUZ7jIApfoUbXbTJARAZO-bsJZkg-SUzs85fnPD6g.yq6SVfcIWA-aG4f8qAGRJ48dj1gW1gvL0NSlFHKC1kk&dib_tag=se&keywords=abnadaby&qid=1776087491&sprefix=abnadaby%2Caps%2C211&sr=8-5";
@@ -229,7 +228,9 @@ function openAmazon() {
 export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const revealCopy = useMemo(
     () => ({
@@ -240,30 +241,29 @@ export default function Home() {
     []
   );
 
-  function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!email) return;
 
-    if (!name.trim() || !email.trim()) {
-      toast.error("Preencha nome e e-mail para acessar o dossiê.");
-      return;
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/send-dossie", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
     }
-
-    const payload = {
-      name: name.trim(),
-      email: email.trim(),
-      source: "bonaparte-kdp-lp",
-      capturedAt: new Date().toISOString(),
-    };
-
-    localStorage.setItem("bonaparteLeadDraft", JSON.stringify(payload));
-    setSubmitted(true);
-
-    toast.success("Dossiê enviado. Verifique seu e-mail em instantes.");
-
-    setTimeout(() => {
-      openAmazon();
-    }, 1200);
-  }
+  };
 
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");
@@ -575,7 +575,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <form className="capture-form" onSubmit={handleLeadSubmit}>
+              <form className="capture-form" onSubmit={handleSubmit}>
                 <label>
                   <span>Nome</span>
                   <input
@@ -602,6 +602,16 @@ export default function Home() {
                 >
                   Acessar o dossiê
                 </Button>
+                {status === "success" && (
+                  <p className="text-sm text-green-400 mt-2">
+                    Dossiê enviado. Verifique seu email.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-red-400 mt-2">
+                    Erro ao enviar. Tente novamente.
+                  </p>
+                )}
                 <p style={{ textAlign: "center", fontSize: "0.82rem", color: "var(--ink-muted)", margin: "0.4rem 0 0" }}>
                   ↓ Leitura em menos de 5 minutos
                 </p>
@@ -616,15 +626,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {submitted ? (
-                <div className="capture-success">
-                  <strong>Dossiê a caminho.</strong>
-                  <p>
-                    Verifique sua caixa de entrada. A obra completa já está
-                    abrindo em nova aba.
-                  </p>
-                </div>
-              ) : null}
             </aside>
           </div>
         </section>
