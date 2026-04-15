@@ -406,7 +406,7 @@ export default function Home() {
                   decoding="async"
                 />
                 <div className="hero-visual-overlay-card overlay-card-top">
-                  <span className="micro-label">Subtítulo da obra</span>
+                  <span className="micro-label">Arquitetura existencial</span>
                   <p>
                     Arquitetura existencial para quem se recusa a viver no
                     automático.
@@ -689,7 +689,7 @@ export default function Home() {
                 decoding="async"
               />
               <div className="authority-overlay">
-                <span className="micro-label">Lógica de marca</span>
+                <span className="micro-label">Casa Bonaparte</span>
                 <p>
                   Casa Bonaparte como casa de formação, visão e legado. Menos
                   infoproduto. Mais publicação premium com lastro intelectual.
