@@ -245,10 +245,6 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     object-fit: cover;
   }
 
-  .hero-visual-stack .bonaparte-img-stack {
-    object-fit: contain;
-  }
-
   a {
     color: inherit;
     text-decoration: none;
@@ -745,6 +741,8 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     inset: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-visual-main::after,
@@ -859,15 +857,26 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     border-radius: 1.45rem;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.07);
-    background-color: #161a22;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #12161d;
+    display: grid;
+    place-items: stretch;
+  }
+
+  /* Cartões só com foto: fundo sólido e sem brilho do ::before do painel. */
+  .bonaparte-photo-card.bonaparte-panel {
+    background: #12161d;
+  }
+
+  .bonaparte-photo-card.bonaparte-panel::before {
+    display: none;
   }
 
   .bonaparte-photo-card .bonaparte-img-stack {
-    flex: 1 1 auto;
+    width: 100%;
+    height: 100%;
     min-height: 0;
+    object-fit: cover;
+    object-position: center;
   }
 
   .metrics-row {
@@ -1188,8 +1197,24 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     align-items: stretch;
   }
 
+  .book-stage.bonaparte-panel {
+    overflow: visible;
+  }
+
+  .book-stage-cover .book-cover-main.bonaparte-img-cover {
+    width: 100%;
+    height: auto;
+    max-width: min(24rem, 100%);
+    max-height: min(46rem, 82vh);
+    object-fit: contain;
+    object-position: center;
+    border-radius: 1.35rem;
+    margin-inline: auto;
+  }
+
   .book-stage-cover {
     min-height: min(33rem, 85vh);
+    padding: 1rem 0.85rem;
     border-radius: 1.75rem;
     background:
       linear-gradient(
@@ -1283,6 +1308,51 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.9rem;
+  }
+
+  .ecosystem-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .ecosystem-card-cover {
+    display: block;
+    align-self: center;
+    width: 100%;
+    max-width: 11rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(214, 186, 124, 0.2);
+    aspect-ratio: 2 / 3;
+    flex-shrink: 0;
+    line-height: 0;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .ecosystem-card-cover:hover {
+    border-color: rgba(214, 186, 124, 0.38);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .ecosystem-card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ecosystem-card-cta {
+    margin-top: auto;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--bronze);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ecosystem-card-cta:hover {
+    text-decoration: underline;
   }
 
   .quote-signal-grid {

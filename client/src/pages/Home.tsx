@@ -11,7 +11,7 @@ const AMAZON_URL =
   "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=KVZNB34NV1WM&dib=eyJ2IjoiMSJ9.j2Dwdvr5_2gPdrDpjyqeXc2hJoKFrhTo0wXkotRxiHg0CEUZ7jIApfoUbXbTJARAZO-bsJZkg-SUzs85fnPD6g.yq6SVfcIWA-aG4f8qAGRJ48dj1gW1gvL0NSlFHKC1kk&dib_tag=se&keywords=abnadaby&qid=1776087491&sprefix=abnadaby%2Caps%2C211&sr=8-5";
 
 const visualAssets = {
-  hero: "/images/hero.jpg",
+  hero: "/images/bonaparte-hero-desk-editorial.jpg",
   books: "/images/books.jpg",
   library: "/images/library.jpg",
   manuscript: "/images/bonaparte-manuscript-square.jpg",
@@ -146,22 +146,38 @@ const bookBenefits = [
   },
 ];
 
+function publicImageFile(name: string) {
+  return `/images/${encodeURIComponent(name)}`;
+}
+
 const ecosystem = [
   {
     title: "O Código da Ascensão",
-    text: "Estrutura prática de elevação da consciência, visão transformadora e engenharia aplicada de vida.",
+    text: "Manifesto de Engenharia Existencial e Soberania Digital",
+    cover: publicImageFile("o codigo da ascençao.jpg"),
+    amazonUrl:
+      "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   },
   {
-    title: "Burnout — Versão Definitiva",
-    text: "Manual biológico e psicológico da sobrevivência moderna, entre colapso, corpo e reconstrução.",
+    title: "Cura Natural para Burnout, Estresse e Exaustão",
+    text: "Guia Prático para Recuperar Sua Energia, Clareza Mental e Estabilidade Emocional",
+    cover: "/images/burnout.png",
+    amazonUrl:
+      "https://www.amazon.com.br/Cura-Natural-Burnout-Estresse-Exaust%C3%A3o-ebook/dp/B0GWSCKZCC",
   },
   {
     title: "Filhos da Prússia",
-    text: "Análise histórica-identitária sobre formação cultural, disciplina e condicionamento coletivo.",
+    text: "Você foi construído. Não educado.",
+    cover: "/images/filho_da_prussia.jpg",
+    amazonUrl:
+      "https://www.amazon.com.br/FILHOS-PR%C3%9ASSIA-Voc%C3%AA-constru%C3%ADdo-educado-ebook/dp/B0GWSKJK92",
   },
   {
     title: "Heimat",
-    text: "Obra metafísica-literária sobre pertencimento, transcendência e a possibilidade de casa interior.",
+    text: "O Animal Ancestral e o Humano Opcional",
+    cover: "/images/heimat.jpg",
+    amazonUrl:
+      "https://www.amazon.com.br/HEIMAT-Animal-Ancestral-Humano-Opcional-ebook/dp/B0GWWS17TF",
   },
 ];
 
@@ -212,7 +228,10 @@ function openAmazon() {
 export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const revealCopy = useMemo(
     () => ({
@@ -223,9 +242,9 @@ export default function Home() {
     []
   );
 
-  async function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!email.trim()) return;
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !whatsapp.trim()) return;
 
     setStatus("loading");
 
@@ -233,20 +252,25 @@ export default function Home() {
       const res = await fetch("/api/send-dossie", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), name: name.trim() }),
+        body: JSON.stringify({
+          email: email.trim(),
+          name: name.trim(),
+          whatsapp: whatsapp.trim(),
+        }),
       });
 
       if (res.ok) {
         setStatus("success");
         setEmail("");
         setName("");
+        setWhatsapp("");
       } else {
         setStatus("error");
       }
     } catch {
       setStatus("error");
     }
-  }
+  };
 
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");
@@ -376,7 +400,7 @@ export default function Home() {
                 <img
                   className="bonaparte-img-cover"
                   src={visualAssets.hero}
-                  alt="Mesa de estudo noturna com livros, manuscritos e iluminação cinematográfica"
+                  alt="Escrivaninha editorial com cartas manuscritas, caneta e luz quente"
                   width={1600}
                   height={1200}
                   decoding="async"
@@ -410,7 +434,7 @@ export default function Home() {
                     <img
                       className="bonaparte-img-stack"
                       src={visualAssets.manuscript}
-                      alt="Manuscrito em atmosfera sofisticada"
+                      alt="Manuscrito aberto com selos de cera e caneta-tinteiro"
                       width={800}
                       height={1000}
                       loading="lazy"
@@ -552,13 +576,13 @@ export default function Home() {
                 </span>
                 <h3>Antes da obra completa,<br />um ponto de clareza.</h3>
                 <p>
-                  Preencha nome e e-mail. O dossiê chega na sua caixa em
-                  minutos — e você acessa a obra principal com muito mais
+                  Preencha nome, e-mail e WhatsApp. O dossiê chega na sua caixa
+                  em minutos — e você acessa a obra principal com muito mais
                   nitidez sobre o que encontrará.
                 </p>
               </div>
 
-              <form className="capture-form" onSubmit={handleLeadSubmit}>
+              <form className="capture-form" onSubmit={handleSubmit}>
                 <label>
                   <span>Nome</span>
                   <input
@@ -579,6 +603,17 @@ export default function Home() {
                     autoComplete="email"
                   />
                 </label>
+                <label>
+                  <span>WhatsApp</span>
+                  <input
+                    value={whatsapp}
+                    onChange={event => setWhatsapp(event.target.value)}
+                    type="tel"
+                    placeholder="+55 11 99999-9999"
+                    autoComplete="tel"
+                    inputMode="tel"
+                  />
+                </label>
                 <Button
                   type="submit"
                   disabled={status === "loading"}
@@ -586,6 +621,16 @@ export default function Home() {
                 >
                   Acessar o dossiê
                 </Button>
+                {status === "success" && (
+                  <p className="text-sm text-green-400 mt-2">
+                    Dossiê enviado. Verifique seu email.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="text-sm text-red-400 mt-2">
+                    Erro ao enviar. Tente novamente.
+                  </p>
+                )}
                 <p style={{ textAlign: "center", fontSize: "0.82rem", color: "var(--ink-muted)", margin: "0.4rem 0 0" }}>
                   ↓ Leitura em menos de 5 minutos
                 </p>
@@ -600,24 +645,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {status === "loading" && (
-                <p className="text-sm text-[#c8a96e] mt-3 animate-pulse">
-                  Enviando dossiê...
-                </p>
-              )}
-              {status === "success" && (
-                <div className="capture-success">
-                  <strong>Dossiê enviado.</strong>
-                  <p>
-                    Verifique seu email — inclusive a caixa de spam.
-                  </p>
-                </div>
-              )}
-              {status === "error" && (
-                <p className="text-sm text-red-400 mt-3">
-                  Erro ao enviar. Tente novamente.
-                </p>
-              )}
             </aside>
           </div>
         </section>
@@ -678,17 +705,13 @@ export default function Home() {
             <article className="bonaparte-panel book-stage">
               <div className="book-stage-cover">
                 <img
+                  className="bonaparte-img-cover book-cover-main"
                   src={visualAssets.cover}
                   alt="Capa do livro Cartografia da Soberania Interior"
+                  width={800}
+                  height={1280}
                   loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center top",
-                    display: "block",
-                    borderRadius: "1.75rem",
-                  }}
+                  decoding="async"
                 />
               </div>
 
@@ -752,8 +775,31 @@ export default function Home() {
                     key={item.title}
                     className="bonaparte-panel ecosystem-card"
                   >
+                    <a
+                      href={item.amazonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ecosystem-card-cover"
+                    >
+                      <img
+                        src={item.cover}
+                        alt={`Capa do e-book ${item.title}`}
+                        width={400}
+                        height={600}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
                     <h4>{item.title}</h4>
                     <p>{item.text}</p>
+                    <a
+                      href={item.amazonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ecosystem-card-cta"
+                    >
+                      Ver na Amazon
+                    </a>
                   </article>
                 ))}
               </div>

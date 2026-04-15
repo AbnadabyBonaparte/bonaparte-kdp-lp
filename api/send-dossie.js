@@ -1,37 +1,53 @@
+// api/send-dossie.js
+// Vercel Serverless Function — envia dossiê via Resend
+
+const FROM_EMAIL =
+  process.env.RESEND_FROM ||
+  'Casa Bonaparte <onboarding@resend.dev>';
+
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-  const { email, name } = req.body || {};
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const { email, name, whatsapp } = req.body || {};
 
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Email inválido' });
   }
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
   if (!RESEND_API_KEY) {
     console.error('RESEND_API_KEY not configured');
-    return res.status(500).json({ error: 'Configuração incompleta' });
+    return res.status(500).json({ error: 'Configuração do servidor incompleta' });
   }
+
+  const leadName = typeof name === 'string' ? name.trim() : '';
+  const leadWhatsapp = typeof whatsapp === 'string' ? whatsapp.trim() : '';
+
+  const resendHeaders = {
+    'Authorization': `Bearer ${RESEND_API_KEY}`,
+    'Content-Type': 'application/json',
+    'User-Agent': 'bonaparte-kdp-lp/1.0',
+  };
 
   const DOSSIE_URL = 'https://bonaparte-kdp-lp.vercel.app/dossie-casa-bonaparte.pdf';
   const AMAZON_URL = 'https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/';
 
-  // Fallback ativo enquanto DNS do domínio próprio não propagar
-  const FROM_EMAIL = process.env.RESEND_FROM || 'Casa Bonaparte <onboarding@resend.dev>';
-
   try {
-    // 1. Enviar dossiê para o lead
+    // EMAIL PARA LEAD
     const emailResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: resendHeaders,
       body: JSON.stringify({
         from: FROM_EMAIL,
         to: email,
@@ -48,7 +64,7 @@ export default async function handler(req, res) {
 </td></tr>
 <tr><td style="padding:0 0 32px 0;"><hr style="border:none;border-top:1px solid #2a2d35;margin:0;"></td></tr>
 <tr><td style="color:#9a9890;font-size:15px;line-height:1.7;padding:0 0 24px 0;">
-  ${name ? `${name}, v` : 'V'}ocê solicitou o Dossiê Introdutório da <strong style="color:#e8e6e1;">Cartografia da Soberania Interior</strong>.
+  ${leadName ? `${leadName}, v` : 'V'}ocê solicitou o Dossiê Introdutório da <strong style="color:#e8e6e1;">Cartografia da Soberania Interior</strong>.
 </td></tr>
 <tr><td style="color:#9a9890;font-size:15px;line-height:1.7;padding:0 0 32px 0;">
   Três ensaios sobre o que funciona contra você enquanto você funciona bem. Texto autônomo, denso, sem teaser. Se fizer sentido, o livro existe. Se não, o que está aqui já é seu.
@@ -81,33 +97,35 @@ export default async function handler(req, res) {
     });
 
     if (!emailResponse.ok) {
-      const err = await emailResponse.json();
-      console.error('Resend error:', err);
+      const errorData = await emailResponse.text();
+      console.error('Resend error:', errorData);
       return res.status(500).json({ error: 'Falha ao enviar email' });
     }
 
-    // 2. Notificar admin (opcional — se ADMIN_EMAIL estiver setado)
-    const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-    if (ADMIN_EMAIL) {
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: FROM_EMAIL,
-          to: ADMIN_EMAIL,
-          subject: `Novo lead: ${email}`,
-          html: `<p><strong>Novo lead Casa Bonaparte</strong></p>
-<p>Email: ${email}</p>
-${name ? `<p>Nome: ${name}</p>` : ''}
-<p>Data: ${new Date().toISOString()}</p>`,
-        }),
-      }).catch(e => console.error('Admin notify error:', e));
-    }
-
     const data = await emailResponse.json();
+
+    // NOTIFICAÇÃO ADMIN
+    const leadNotify =
+      process.env.LEAD_NOTIFY_EMAIL ||
+      'abnadabybonaparte@gmail.com';
+
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: resendHeaders,
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: leadNotify,
+        subject: `Novo lead: ${email}`,
+        text: `
+Novo lead capturado
+
+Nome: ${leadName || '-'}
+Email: ${email}
+WhatsApp: ${leadWhatsapp || '-'}
+        `,
+      }),
+    }).catch(e => console.error('Admin notify error:', e));
+
     return res.status(200).json({ success: true, id: data.id });
 
   } catch (error) {
