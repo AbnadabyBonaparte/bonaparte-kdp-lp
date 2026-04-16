@@ -179,6 +179,30 @@ const ecosystem = [
     amazonUrl:
       "https://www.amazon.com.br/HEIMAT-Animal-Ancestral-Humano-Opcional-ebook/dp/B0GWWS17TF",
   },
+  {
+    title: "Licença",
+    text: "",
+    cover: "/images/licença.jpg",
+    upcoming: true,
+  },
+  {
+    title: "O Que Não Começou",
+    text: "",
+    cover: "/images/o que não começou.jpg",
+    upcoming: true,
+  },
+  {
+    title: "A Tribo Antes de Nós",
+    text: "",
+    cover: "/images/# A tribo antes de nós.jpg",
+    upcoming: true,
+  },
+  {
+    title: "O Deus Que Não Se Separa",
+    text: "",
+    cover: "/images/O_DEUS_QUE_NAO_SE_SEPARA.jpg",
+    upcoming: true,
+  },
 ];
 
 const quoteSignals = [
@@ -689,7 +713,6 @@ export default function Home() {
                 decoding="async"
               />
               <div className="authority-overlay">
-                <span className="micro-label">Casa Bonaparte</span>
                 <p>
                   Casa Bonaparte como casa de formação, visão e legado. Menos
                   infoproduto. Mais publicação premium com lastro intelectual.
@@ -775,31 +798,50 @@ export default function Home() {
                     key={item.title}
                     className="bonaparte-panel ecosystem-card"
                   >
-                    <a
-                      href={item.amazonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ecosystem-card-cover"
-                    >
-                      <img
-                        src={item.cover}
-                        alt={`Capa do e-book ${item.title}`}
-                        width={400}
-                        height={600}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </a>
+                    {item.upcoming ? (
+                      <div className="ecosystem-card-cover">
+                        <img
+                          src={item.cover}
+                          alt={`Capa do e-book ${item.title}`}
+                          width={400}
+                          height={600}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    ) : (
+                      <a
+                        href={item.amazonUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ecosystem-card-cover"
+                      >
+                        <img
+                          src={item.cover}
+                          alt={`Capa do e-book ${item.title}`}
+                          width={400}
+                          height={600}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                    )}
                     <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                    <a
-                      href={item.amazonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ecosystem-card-cta"
-                    >
-                      Ver na Amazon
-                    </a>
+                    {item.text && <p>{item.text}</p>}
+                    {item.upcoming ? (
+                      <span className="ecosystem-card-upcoming">
+                        Em breve nas livrarias
+                      </span>
+                    ) : (
+                      <a
+                        href={item.amazonUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ecosystem-card-cta"
+                      >
+                        Ver na Amazon
+                      </a>
+                    )}
                   </article>
                 ))}
               </div>

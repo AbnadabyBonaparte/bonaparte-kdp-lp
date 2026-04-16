@@ -1355,6 +1355,20 @@ assimetria premium, profundidade controlada e nenhuma estética genérica de tem
     text-decoration: underline;
   }
 
+  .ecosystem-card-upcoming {
+    margin-top: auto;
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    border: 1px solid var(--panel-edge);
+    border-radius: 2rem;
+    padding: 0.25em 0.75em;
+    align-self: flex-start;
+  }
+
   .quote-signal-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
