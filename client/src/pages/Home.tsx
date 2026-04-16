@@ -194,7 +194,7 @@ const ecosystem = [
   {
     title: "A Tribo Antes de Nós",
     text: "",
-    cover: "/images/# A tribo antes de nós.jpg",
+    cover: "/images/tribo-antes-de-nos.jpg",
     upcoming: true,
   },
   {
