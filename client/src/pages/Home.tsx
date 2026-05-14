@@ -7,6 +7,7 @@ Sem meta-copy. Sem notas de dev. Sem cheiro de marketing.
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { bookLpHref } from "@/lib/bookHostname";
 
 const AMAZON_URL =
   "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=KVZNB34NV1WM&dib=eyJ2IjoiMSJ9.j2Dwdvr5_2gPdrDpjyqeXc2hJoKFrhTo0wXkotRxiHg0CEUZ7jIApfoUbXbTJARAZO-bsJZkg-SUzs85fnPD6g.yq6SVfcIWA-aG4f8qAGRJ48dj1gW1gvL0NSlFHKC1kk&dib_tag=se&keywords=abnadaby&qid=1776087491&sprefix=abnadaby%2Caps%2C211&sr=8-5";
@@ -810,7 +811,8 @@ export default function Home() {
               </div>
               <div className="ecosystem-grid">
                 {ecosystem.map(item => {
-                  const lpHref = item.slug ? `/${item.slug}` : null;
+                  const lpHref = item.slug ? bookLpHref(item.slug) : null;
+                  const lpIsExternal = Boolean(lpHref?.startsWith("http"));
                   return (
                   <article
                     key={item.title}
@@ -828,16 +830,29 @@ export default function Home() {
                         />
                       </div>
                     ) : lpHref ? (
-                      <Link href={lpHref} className="ecosystem-card-cover">
-                        <img
-                          src={item.cover}
-                          alt={`Capa do e-book ${item.title}`}
-                          width={400}
-                          height={600}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </Link>
+                      lpIsExternal ? (
+                        <a href={lpHref} className="ecosystem-card-cover" rel="noopener noreferrer">
+                          <img
+                            src={item.cover}
+                            alt={`Capa do e-book ${item.title}`}
+                            width={400}
+                            height={600}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </a>
+                      ) : (
+                        <Link href={lpHref} className="ecosystem-card-cover">
+                          <img
+                            src={item.cover}
+                            alt={`Capa do e-book ${item.title}`}
+                            width={400}
+                            height={600}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </Link>
+                      )
                     ) : (
                       <a
                         href={item.amazonUrl}
@@ -862,9 +877,15 @@ export default function Home() {
                         Em breve nas livrarias
                       </span>
                     ) : lpHref ? (
-                      <Link href={lpHref} className="ecosystem-card-cta">
-                        Ver página do livro
-                      </Link>
+                      lpIsExternal ? (
+                        <a href={lpHref} className="ecosystem-card-cta" rel="noopener noreferrer">
+                          Ver página do livro
+                        </a>
+                      ) : (
+                        <Link href={lpHref} className="ecosystem-card-cta">
+                          Ver página do livro
+                        </Link>
+                      )
                     ) : (
                       <a
                         href={item.amazonUrl}

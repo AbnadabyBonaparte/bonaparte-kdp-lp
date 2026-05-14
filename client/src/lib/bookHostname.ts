@@ -38,21 +38,43 @@ export function getBookSlugFromHostname(hostname: string): BookLpSlug | null {
   return (BOOK_LP_SLUGS as readonly string[]).includes(sub) ? (sub as BookLpSlug) : null;
 }
 
+/** Ambientes onde mantemos rotas `/slug` (sem subdomínio canónico). */
+function isLocalOrPreviewHost(hostname: string): boolean {
+  const h = hostname.trim().toLowerCase();
+  if (h === "localhost" || h === "127.0.0.1") return true;
+  if (h.endsWith(".local")) return true;
+  if (h.endsWith(".vercel.app")) return true;
+  return false;
+}
+
+/** URL canónica da LP no domínio do livro (produção). */
+export function bookCanonicalSubdomainUrl(slug: string): string {
+  const base = getBookHostBase();
+  return `https://${slug}.${base}/`;
+}
+
 /** Estamos num host `*.casabonaparte.com.br` de um livro (navegação entre livros por subdomínio). */
 export function isBookSubdomainHost(hostname: string): boolean {
   return getBookSlugFromHostname(hostname) !== null;
 }
 
-/** Link para a LP de um livro: path no hub multi-domínio, URL absoluta nos hosts por livro. */
+/**
+ * Link para a LP de um livro:
+ * - Entre hosts de livro: URL absoluta `https://<slug>.<base>/`
+ * - Hub em produção (ex.: bonaparte.alshamglobal.com.br): mesma URL canónica por subdomínio
+ * - Localhost / preview Vercel: path relativo `/<slug>`
+ */
 export function bookLpHref(
   slug: string,
   hostname: string = typeof window !== "undefined" ? window.location.hostname : "",
 ): string {
   if (isBookSubdomainHost(hostname)) {
-    const base = getBookHostBase();
-    return `https://${slug}.${base}/`;
+    return bookCanonicalSubdomainUrl(slug);
   }
-  return `/${slug}`;
+  if (isLocalOrPreviewHost(hostname)) {
+    return `/${slug}`;
+  }
+  return bookCanonicalSubdomainUrl(slug);
 }
 
 export function hubHref(hostname: string = typeof window !== "undefined" ? window.location.hostname : ""): string {

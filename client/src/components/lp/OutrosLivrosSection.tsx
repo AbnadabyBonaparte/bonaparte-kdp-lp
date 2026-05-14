@@ -48,7 +48,7 @@ export default function OutrosLivrosSection({ currentBookId, items }: Props) {
               </>
             );
             return href.startsWith("http") ? (
-              <a key={b.id} href={href} className={cardClass}>
+              <a key={b.id} href={href} className={cardClass} rel="noopener noreferrer">
                 {inner}
               </a>
             ) : (
