@@ -3,9 +3,10 @@ Design philosophy for this file: a aplicação deve nascer no modo escuro editor
 coerência de marca e atmosfera cinematográfica desde o primeiro paint.
 */
 
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ComponentType, type LazyExoticComponent } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { getBookSlugFromHostname } from "@/lib/bookHostname";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -26,6 +27,29 @@ function LpFallback() {
     <div className="flex min-h-screen items-center justify-center bg-[#090909] text-sm tracking-wide text-white/50">
       Carregando…
     </div>
+  );
+}
+
+const LP_BY_SLUG: Record<string, LazyExoticComponent<ComponentType>> = {
+  cartografia: CartografiaLP,
+  heimat: HeimatLP,
+  "filhos-prussia": FilhosPrussiaLP,
+  "deus-nao-separa": DeusNaoSeparaLP,
+  "codigo-ascensao": CodigoAscensaoLP,
+  licenca: LicencaLP,
+  "o-que-nao-comecou": OQueNaoComecouLP,
+  burnout: BurnoutLP,
+};
+
+function HostBookRouter({ slug }: { slug: string }) {
+  const Cmp = LP_BY_SLUG[slug];
+  if (!Cmp) {
+    return <NotFound />;
+  }
+  return (
+    <Suspense fallback={<LpFallback />}>
+      <Cmp />
+    </Suspense>
   );
 }
 
@@ -80,12 +104,15 @@ function Router() {
 }
 
 function App() {
+  const bookSlug =
+    typeof window !== "undefined" ? getBookSlugFromHostname(window.location.hostname) : null;
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster richColors position="top-right" />
-          <Router />
+          {bookSlug ? <HostBookRouter slug={bookSlug} /> : <Router />}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

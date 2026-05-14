@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import BookCover from "@/components/ui/BookCover";
 import type { BookRegistryItem } from "@/data/bookTypes";
+import { bookLpHref } from "@/lib/bookHostname";
 
 type Props = {
   currentBookId: string;
@@ -26,23 +27,36 @@ export default function OutrosLivrosSection({ currentBookId, items }: Props) {
           </div>
         </div>
         <div className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
-          {others.map(b => (
-            <Link
-              key={b.id}
-              href={`/${b.slug}`}
-              className="group flex w-[42vw] max-w-[200px] shrink-0 flex-col overflow-hidden rounded-lg border border-white/10 bg-black/20 transition hover:border-[color:var(--book-primary)]/40 md:w-auto md:max-w-none"
-            >
-              <div className="aspect-[2/3] w-full overflow-hidden">
-                <BookCover src={b.coverImage} alt={b.title} className="transition duration-500 group-hover:scale-[1.03]" />
-              </div>
-              <div className="flex flex-1 flex-col gap-2 p-4">
-                <p className="line-clamp-2 text-sm font-medium text-[color:var(--book-text)]" style={{ fontFamily: "var(--lp-font-body)" }}>
-                  {b.title}
-                </p>
-                <span className="text-xs text-[color:var(--book-primary)]">→ Ver livro</span>
-              </div>
-            </Link>
-          ))}
+          {others.map(b => {
+            const href = bookLpHref(b.slug);
+            const cardClass =
+              "group flex w-[42vw] max-w-[200px] shrink-0 flex-col overflow-hidden rounded-lg border border-white/10 bg-black/20 transition hover:border-[color:var(--book-primary)]/40 md:w-auto md:max-w-none";
+            const inner = (
+              <>
+                <div className="aspect-[2/3] w-full overflow-hidden">
+                  <BookCover src={b.coverImage} alt={b.title} className="transition duration-500 group-hover:scale-[1.03]" />
+                </div>
+                <div className="flex flex-1 flex-col gap-2 p-4">
+                  <p
+                    className="line-clamp-2 text-sm font-medium text-[color:var(--book-text)]"
+                    style={{ fontFamily: "var(--lp-font-body)" }}
+                  >
+                    {b.title}
+                  </p>
+                  <span className="text-xs text-[color:var(--book-primary)]">→ Ver livro</span>
+                </div>
+              </>
+            );
+            return href.startsWith("http") ? (
+              <a key={b.id} href={href} className={cardClass}>
+                {inner}
+              </a>
+            ) : (
+              <Link key={b.id} href={href} className={cardClass}>
+                {inner}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

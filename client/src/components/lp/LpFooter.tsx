@@ -1,6 +1,10 @@
 import { Link } from "wouter";
+import { hubHref } from "@/lib/bookHostname";
 
 export default function LpFooter() {
+  const hub = hubHref();
+  const hubIsExternal = hub.startsWith("http");
+
   return (
     <footer className="border-t border-white/5 bg-black px-6 py-16 text-center text-[#c8c4bc]">
       <img
@@ -14,9 +18,15 @@ export default function LpFooter() {
         Consciência · Pertencimento · Ancestralidade
       </p>
       <nav className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[#c8a96e]">
-        <Link href="/" className="hover:underline">
-          Hub
-        </Link>
+        {hubIsExternal ? (
+          <a href={hub} className="hover:underline">
+            Hub
+          </a>
+        ) : (
+          <Link href={hub} className="hover:underline">
+            Hub
+          </Link>
+        )}
         <a href="https://www.instagram.com/abnadabybonaparte/" className="hover:underline" target="_blank" rel="noreferrer">
           Músico
         </a>

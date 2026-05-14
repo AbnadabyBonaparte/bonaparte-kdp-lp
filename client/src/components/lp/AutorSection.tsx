@@ -1,8 +1,12 @@
 import { Link } from "wouter";
+import { hubHref } from "@/lib/bookHostname";
 
 const AUTHOR_IMAGE = "/images/bonaparte-hero-desk-editorial.jpg";
 
 export default function AutorSection() {
+  const hub = hubHref();
+  const hubIsExternal = hub.startsWith("http");
+
   return (
     <section className="border-y border-white/5 bg-[color:var(--book-bg)] px-6 py-20 sm:py-28">
       <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[minmax(0,280px)_1fr] md:items-center md:gap-16">
@@ -47,13 +51,23 @@ export default function AutorSection() {
             </p>
             <p className="text-[color:var(--book-text)]/85">Não escreve sobre o que estudou. Escreve sobre o que atravessou.</p>
           </div>
-          <Link
-            href="/"
-            className="mt-8 inline-flex items-center gap-1 text-sm tracking-wide text-[color:var(--book-primary)] underline-offset-4 hover:underline"
-            style={{ fontFamily: "var(--lp-font-accent)" }}
-          >
-            → Casa Bonaparte
-          </Link>
+          {hubIsExternal ? (
+            <a
+              href={hub}
+              className="mt-8 inline-flex items-center gap-1 text-sm tracking-wide text-[color:var(--book-primary)] underline-offset-4 hover:underline"
+              style={{ fontFamily: "var(--lp-font-accent)" }}
+            >
+              → Casa Bonaparte
+            </a>
+          ) : (
+            <Link
+              href={hub}
+              className="mt-8 inline-flex items-center gap-1 text-sm tracking-wide text-[color:var(--book-primary)] underline-offset-4 hover:underline"
+              style={{ fontFamily: "var(--lp-font-accent)" }}
+            >
+              → Casa Bonaparte
+            </Link>
+          )}
         </div>
       </div>
     </section>
