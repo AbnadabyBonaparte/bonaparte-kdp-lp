@@ -19,7 +19,8 @@ export const licencaConfig: BookConfig = {
     "O que sobra da identidade quando a herança emocional é retirada?",
   ],
   leadTeaser: "Veja o padrão antes de decidir se vai continuar executando-o.",
-  amazonUrl: "https://www.amazon.com.br/s?k=Licen%C3%A7a+Abnadaby+Bonaparte",
+  amazonUrl:
+    "https://www.amazon.com.br/Licen%C3%A7a-continua-quando-voc%C3%AA-repetir-ebook/dp/B0GZCVJQRP",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: publicImage("licença.jpg"),

@@ -43,7 +43,7 @@ export default async function handler(req, res) {
   };
 
   const DOSSIE_URL = 'https://bonaparte-kdp-lp.vercel.app/dossie-casa-bonaparte.pdf';
-  const AMAZON_URL = 'https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/';
+  const AMAZON_URL = 'https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82';
 
   const greeting = leadName ? leadName + ', v' : 'V';
   const emailHtml = '<!DOCTYPE html>'

@@ -19,7 +19,7 @@ export const cartografiaConfig: BookConfig = {
   ],
   leadTeaser: "Antes de comprar, entenda o terreno que este livro atravessa.",
   amazonUrl:
-    "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/",
+    "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: "/images/bonaparte-manuscript-square.jpg",

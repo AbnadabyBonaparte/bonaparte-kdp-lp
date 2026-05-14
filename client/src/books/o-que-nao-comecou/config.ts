@@ -19,7 +19,8 @@ export const oQueNaoComecouConfig: BookConfig = {
     "Identidade é construída ou descoberta?",
   ],
   leadTeaser: "Entre no território desta história antes de decidir se quer atravessá-la.",
-  amazonUrl: "https://www.amazon.com.br/s?k=O+Que+N%C3%A3o+Come%C3%A7ou+Bonaparte",
+  amazonUrl:
+    "https://www.amazon.com.br/Que-N%C3%A3o-Come%C3%A7ou-travessia-identidade-ebook/dp/B0GZP2DSL8",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: publicImage("o que não começou.jpg"),

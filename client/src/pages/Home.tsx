@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { bookLpHref } from "@/lib/bookHostname";
 
 const AMAZON_URL =
-  "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=KVZNB34NV1WM&dib=eyJ2IjoiMSJ9.j2Dwdvr5_2gPdrDpjyqeXc2hJoKFrhTo0wXkotRxiHg0CEUZ7jIApfoUbXbTJARAZO-bsJZkg-SUzs85fnPD6g.yq6SVfcIWA-aG4f8qAGRJ48dj1gW1gvL0NSlFHKC1kk&dib_tag=se&keywords=abnadaby&qid=1776087491&sprefix=abnadaby%2Caps%2C211&sr=8-5";
+  "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82";
 
 const visualAssets = {
   hero: "/images/bonaparte-hero-desk-editorial.jpg",
@@ -158,8 +158,8 @@ const ecosystem = [
     text: "Arquitetura existencial para quem se recusa a viver no automático.",
     cover: visualAssets.manuscript,
     slug: "cartografia",
-    amazonUrl:
-      "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/",
+  amazonUrl:
+    "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82",
   },
   {
     title: "O Código da Ascensão",
@@ -198,14 +198,15 @@ const ecosystem = [
     text: "O que continua quando você para de repetir.",
     cover: publicImageFile("licença.jpg"),
     slug: "licenca",
-    amazonUrl: "https://www.amazon.com.br/s?k=Licen%C3%A7a+Abnadaby+Bonaparte",
+    amazonUrl: "https://www.amazon.com.br/Licen%C3%A7a-continua-quando-voc%C3%AA-repetir-ebook/dp/B0GZCVJQRP",
   },
   {
     title: "O Que Não Começou",
     text: "Uma travessia sobre identidade e separação.",
     cover: publicImageFile("o que não começou.jpg"),
     slug: "o-que-nao-comecou",
-    amazonUrl: "https://www.amazon.com.br/s?k=O+Que+N%C3%A3o+Come%C3%A7ou+Bonaparte",
+    amazonUrl:
+      "https://www.amazon.com.br/Que-N%C3%A3o-Come%C3%A7ou-travessia-identidade-ebook/dp/B0GZP2DSL8",
   },
   {
     title: "A Tribo Antes de Nós",
@@ -218,7 +219,7 @@ const ecosystem = [
     text: "Cristo antes da Igreja.",
     cover: "/images/O_DEUS_QUE_NAO_SE_SEPARA.jpg",
     slug: "deus-nao-separa",
-    amazonUrl: "https://www.amazon.com.br/s?k=O+Deus+Que+N%C3%A3o+Se+Separa+Bonaparte",
+    amazonUrl: "https://www.amazon.com.br/Deus-Que-N%C3%A3o-Se-Separa-ebook/dp/B0GZNQQH3K",
   },
 ];
 

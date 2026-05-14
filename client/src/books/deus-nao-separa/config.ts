@@ -18,7 +18,7 @@ export const deusNaoSeparaConfig: BookConfig = {
     "Pode existir fé sem divisão entre salvos e perdidos?",
   ],
   leadTeaser: "Uma travessia espiritual que começa onde o dogma termina.",
-  amazonUrl: "https://www.amazon.com.br/s?k=O+Deus+Que+N%C3%A3o+Se+Separa+Bonaparte",
+  amazonUrl: "https://www.amazon.com.br/Deus-Que-N%C3%A3o-Se-Separa-ebook/dp/B0GZNQQH3K",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: "/images/O_DEUS_QUE_NAO_SE_SEPARA.jpg",
