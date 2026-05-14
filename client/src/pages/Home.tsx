@@ -5,6 +5,7 @@ Sem meta-copy. Sem notas de dev. Sem cheiro de marketing.
 */
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
 const AMAZON_URL =
@@ -155,6 +156,7 @@ const ecosystem = [
     title: "O Código da Ascensão",
     text: "Manifesto de Engenharia Existencial e Soberania Digital",
     cover: publicImageFile("o codigo da ascençao.jpg"),
+    slug: "codigo-ascensao",
     amazonUrl:
       "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   },
@@ -162,6 +164,7 @@ const ecosystem = [
     title: "Cura Natural para Burnout, Estresse e Exaustão",
     text: "Guia Prático para Recuperar Sua Energia, Clareza Mental e Estabilidade Emocional",
     cover: "/images/burnout.png",
+    slug: "burnout",
     amazonUrl:
       "https://www.amazon.com.br/Cura-Natural-Burnout-Estresse-Exaust%C3%A3o-ebook/dp/B0GWSCKZCC",
   },
@@ -169,6 +172,7 @@ const ecosystem = [
     title: "Filhos da Prússia",
     text: "Você foi construído. Não educado.",
     cover: "/images/filho_da_prussia.jpg",
+    slug: "filhos-prussia",
     amazonUrl:
       "https://www.amazon.com.br/FILHOS-PR%C3%9ASSIA-Voc%C3%AA-constru%C3%ADdo-educado-ebook/dp/B0GWSKJK92",
   },
@@ -176,20 +180,23 @@ const ecosystem = [
     title: "Heimat",
     text: "O Animal Ancestral e o Humano Opcional",
     cover: "/images/heimat.jpg",
+    slug: "heimat",
     amazonUrl:
       "https://www.amazon.com.br/HEIMAT-Animal-Ancestral-Humano-Opcional-ebook/dp/B0GWWS17TF",
   },
   {
     title: "Licença",
-    text: "",
-    cover: "/images/licença.jpg",
-    upcoming: true,
+    text: "O que continua quando você para de repetir.",
+    cover: publicImageFile("licença.jpg"),
+    slug: "licenca",
+    amazonUrl: "https://www.amazon.com.br/s?k=Licen%C3%A7a+Abnadaby+Bonaparte",
   },
   {
     title: "O Que Não Começou",
-    text: "",
-    cover: "/images/o que não começou.jpg",
-    upcoming: true,
+    text: "Uma travessia sobre identidade e separação.",
+    cover: publicImageFile("o que não começou.jpg"),
+    slug: "o-que-nao-comecou",
+    amazonUrl: "https://www.amazon.com.br/s?k=O+Que+N%C3%A3o+Come%C3%A7ou+Bonaparte",
   },
   {
     title: "A Tribo Antes de Nós",
@@ -199,9 +206,10 @@ const ecosystem = [
   },
   {
     title: "O Deus Que Não Se Separa",
-    text: "",
+    text: "Cristo antes da Igreja.",
     cover: "/images/O_DEUS_QUE_NAO_SE_SEPARA.jpg",
-    upcoming: true,
+    slug: "deus-nao-separa",
+    amazonUrl: "https://www.amazon.com.br/s?k=O+Deus+Que+N%C3%A3o+Se+Separa+Bonaparte",
   },
 ];
 
@@ -793,7 +801,9 @@ export default function Home() {
                 </p>
               </div>
               <div className="ecosystem-grid">
-                {ecosystem.map(item => (
+                {ecosystem.map(item => {
+                  const lpHref = item.slug ? `/${item.slug}` : null;
+                  return (
                   <article
                     key={item.title}
                     className="bonaparte-panel ecosystem-card"
@@ -809,6 +819,17 @@ export default function Home() {
                           decoding="async"
                         />
                       </div>
+                    ) : lpHref ? (
+                      <Link href={lpHref} className="ecosystem-card-cover">
+                        <img
+                          src={item.cover}
+                          alt={`Capa do e-book ${item.title}`}
+                          width={400}
+                          height={600}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </Link>
                     ) : (
                       <a
                         href={item.amazonUrl}
@@ -832,6 +853,10 @@ export default function Home() {
                       <span className="ecosystem-card-upcoming">
                         Em breve nas livrarias
                       </span>
+                    ) : lpHref ? (
+                      <Link href={lpHref} className="ecosystem-card-cta">
+                        Ver página do livro
+                      </Link>
                     ) : (
                       <a
                         href={item.amazonUrl}
@@ -843,7 +868,8 @@ export default function Home() {
                       </a>
                     )}
                   </article>
-                ))}
+                  );
+                })}
               </div>
             </aside>
           </div>
