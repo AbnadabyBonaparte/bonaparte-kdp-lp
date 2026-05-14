@@ -148,23 +148,19 @@ const bookBenefits = [
   },
 ];
 
-function publicImageFile(name: string) {
-  return `/images/${encodeURIComponent(name)}`;
-}
-
 const ecosystem = [
   {
     title: "Cartografia da Soberania Interior",
     text: "Arquitetura existencial para quem se recusa a viver no automático.",
-    cover: visualAssets.manuscript,
+    cover: visualAssets.cover,
     slug: "cartografia",
-  amazonUrl:
-    "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82",
+    amazonUrl:
+      "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82",
   },
   {
     title: "O Código da Ascensão",
     text: "Manifesto de Engenharia Existencial e Soberania Digital",
-    cover: publicImageFile("o codigo da ascençao.jpg"),
+    cover: "/images/codigo-ascensao.jpg",
     slug: "codigo-ascensao",
     amazonUrl:
       "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
@@ -196,14 +192,14 @@ const ecosystem = [
   {
     title: "Licença",
     text: "O que continua quando você para de repetir.",
-    cover: publicImageFile("licença.jpg"),
+    cover: "/images/licenca.jpg",
     slug: "licenca",
     amazonUrl: "https://www.amazon.com.br/Licen%C3%A7a-continua-quando-voc%C3%AA-repetir-ebook/dp/B0GZCVJQRP",
   },
   {
     title: "O Que Não Começou",
     text: "Uma travessia sobre identidade e separação.",
-    cover: publicImageFile("o que não começou.jpg"),
+    cover: "/images/o-que-nao-comecou.jpg",
     slug: "o-que-nao-comecou",
     amazonUrl:
       "https://www.amazon.com.br/Que-N%C3%A3o-Come%C3%A7ou-travessia-identidade-ebook/dp/B0GZP2DSL8",

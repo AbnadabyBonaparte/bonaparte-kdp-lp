@@ -22,6 +22,7 @@ export const heimatConfig: BookConfig = {
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: "/images/heimat.jpg",
+  heroImage: "/images/heimat.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/heimat",

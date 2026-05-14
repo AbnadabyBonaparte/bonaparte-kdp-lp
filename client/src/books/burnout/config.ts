@@ -22,6 +22,7 @@ export const burnoutConfig: BookConfig = {
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: "/images/burnout.png",
+  heroImage: "/images/bonaparte-hero-desk-editorial.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/burnout",

@@ -1,5 +1,4 @@
 import type { BookConfig } from "@/types/book";
-import { publicImage } from "@/lib/publicImage";
 
 export const oQueNaoComecouConfig: BookConfig = {
   id: "o-que-nao-comecou",
@@ -23,7 +22,8 @@ export const oQueNaoComecouConfig: BookConfig = {
     "https://www.amazon.com.br/Que-N%C3%A3o-Come%C3%A7ou-travessia-identidade-ebook/dp/B0GZP2DSL8",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
-  coverImage: publicImage("o que não começou.jpg"),
+  coverImage: "/images/o-que-nao-comecou.jpg",
+  heroImage: "/images/library.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/o-que-nao-comecou",
@@ -43,6 +43,6 @@ export const oQueNaoComecouConfig: BookConfig = {
   feeling: ["nebulosa", "hipnótica", "cinematográfica"],
   motionProfile: "liminal",
   seoDescription: "O Que Não Começou — ficção filosófica sobre identidade e limiar, Casa Bonaparte.",
-  ogImage: publicImage("o que não começou.jpg"),
+  ogImage: "/images/o-que-nao-comecou.jpg",
   audioDurationLabel: "44 minutos",
 };

@@ -22,6 +22,7 @@ export const deusNaoSeparaConfig: BookConfig = {
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: "/images/O_DEUS_QUE_NAO_SE_SEPARA.jpg",
+  heroImage: "/images/library.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/deus-nao-separa",

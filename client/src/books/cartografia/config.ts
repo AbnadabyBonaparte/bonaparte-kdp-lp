@@ -22,7 +22,8 @@ export const cartografiaConfig: BookConfig = {
     "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
-  coverImage: "/images/bonaparte-manuscript-square.jpg",
+  coverImage: "/images/cartografia-capa.jpg",
+  heroImage: "/images/bonaparte-hero-desk-editorial.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/cartografia",
@@ -43,6 +44,6 @@ export const cartografiaConfig: BookConfig = {
   motionProfile: "contemplativo",
   seoDescription:
     "Arquitetura existencial para quem se recusa a viver no automático — Cartografia da Soberania Interior, Casa Bonaparte.",
-  ogImage: "/images/bonaparte-manuscript-square.jpg",
+  ogImage: "/images/cartografia-capa.jpg",
   audioDurationLabel: "42 minutos",
 };

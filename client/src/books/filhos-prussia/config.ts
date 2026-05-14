@@ -22,6 +22,7 @@ export const filhosPrussiaConfig: BookConfig = {
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
   coverImage: "/images/filho_da_prussia.jpg",
+  heroImage: "/images/bonaparte-manuscript-square.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/filhos-prussia",

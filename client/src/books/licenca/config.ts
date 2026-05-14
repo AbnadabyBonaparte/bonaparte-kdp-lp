@@ -1,5 +1,4 @@
 import type { BookConfig } from "@/types/book";
-import { publicImage } from "@/lib/publicImage";
 
 export const licencaConfig: BookConfig = {
   id: "licenca",
@@ -23,7 +22,8 @@ export const licencaConfig: BookConfig = {
     "https://www.amazon.com.br/Licen%C3%A7a-continua-quando-voc%C3%AA-repetir-ebook/dp/B0GZCVJQRP",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
-  coverImage: publicImage("licença.jpg"),
+  coverImage: "/images/licenca.jpg",
+  heroImage: "/images/bonaparte-manuscript-detail.png",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/licenca",
@@ -43,6 +43,6 @@ export const licencaConfig: BookConfig = {
   feeling: ["íntima", "inquietante", "psicológica"],
   motionProfile: "subterraneo",
   seoDescription: "Licença — o que continua quando você para de repetir. Interrupção de padrões, Casa Bonaparte.",
-  ogImage: publicImage("licença.jpg"),
+  ogImage: "/images/licenca.jpg",
   audioDurationLabel: "41 minutos",
 };

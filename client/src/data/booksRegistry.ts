@@ -2,15 +2,13 @@ import type { BookRegistryItem } from "./bookTypes";
 
 export type { BookRegistryItem } from "./bookTypes";
 
-const img = (file: string) => `/images/${encodeURIComponent(file)}`;
-
 /** Metadados para navegação entre LPs — evita importar todos os configs no chunk da LP. */
 export const BOOK_REGISTRY: BookRegistryItem[] = [
   {
     id: "cartografia",
     slug: "cartografia",
     title: "Cartografia da Soberania Interior",
-    coverImage: "/images/bonaparte-manuscript-square.jpg",
+    coverImage: "/images/cartografia-capa.jpg",
     amazonUrl:
       "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82",
   },
@@ -39,14 +37,14 @@ export const BOOK_REGISTRY: BookRegistryItem[] = [
     id: "codigo-ascensao",
     slug: "codigo-ascensao",
     title: "O Código da Ascensão",
-    coverImage: img("o codigo da ascençao.jpg"),
+    coverImage: "/images/codigo-ascensao.jpg",
     amazonUrl: "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   },
   {
     id: "licenca",
     slug: "licenca",
     title: "Licença",
-    coverImage: img("licença.jpg"),
+    coverImage: "/images/licenca.jpg",
     amazonUrl:
       "https://www.amazon.com.br/Licen%C3%A7a-continua-quando-voc%C3%AA-repetir-ebook/dp/B0GZCVJQRP",
   },
@@ -54,7 +52,7 @@ export const BOOK_REGISTRY: BookRegistryItem[] = [
     id: "o-que-nao-comecou",
     slug: "o-que-nao-comecou",
     title: "O Que Não Começou",
-    coverImage: img("o que não começou.jpg"),
+    coverImage: "/images/o-que-nao-comecou.jpg",
     amazonUrl:
       "https://www.amazon.com.br/Que-N%C3%A3o-Come%C3%A7ou-travessia-identidade-ebook/dp/B0GZP2DSL8",
   },

@@ -1,5 +1,4 @@
 import type { BookConfig } from "@/types/book";
-import { publicImage } from "@/lib/publicImage";
 
 export const codigoAscensaoConfig: BookConfig = {
   id: "codigo-ascensao",
@@ -22,7 +21,8 @@ export const codigoAscensaoConfig: BookConfig = {
   amazonUrl: "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
   amazonPrice: "R$ 9,99",
   amazonPricePrint: "Consulte na página da obra",
-  coverImage: publicImage("o codigo da ascençao.jpg"),
+  coverImage: "/images/codigo-ascensao.jpg",
+  heroImage: "/images/hero.jpg",
   mindMapImage: "",
   audioEmbedUrl: "",
   emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/codigo-ascensao",
@@ -42,6 +42,6 @@ export const codigoAscensaoConfig: BookConfig = {
   feeling: ["elétrica", "confrontacional", "energética"],
   motionProfile: "electrico",
   seoDescription: "O Código da Ascensão — manifesto de engenharia existencial e soberania digital, Casa Bonaparte.",
-  ogImage: publicImage("o codigo da ascençao.jpg"),
+  ogImage: "/images/codigo-ascensao.jpg",
   audioDurationLabel: "36 minutos",
 };
