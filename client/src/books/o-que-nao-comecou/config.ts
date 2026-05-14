@@ -1,0 +1,47 @@
+import type { BookConfig } from "@/types/book";
+import { publicImage } from "@/lib/publicImage";
+
+export const oQueNaoComecouConfig: BookConfig = {
+  id: "o-que-nao-comecou",
+  slug: "o-que-nao-comecou",
+  title: "O Que Não Começou",
+  subtitle: "Uma travessia sobre identidade e separação",
+  category: "Ficção Filosófica",
+  hook: "Ninguém lembra quando começou.\nE isso não incomodava no início.\nCinco homens. Uma estrada.\nCada um carregando algo que nunca nomeou.",
+  territory: [
+    "O Que Não Começou não é uma história sobre para onde vão. É sobre o que descobrem que já estavam sendo — antes mesmo da partida.",
+    "Entre ficção e filosofia, esta narrativa percorre o que acontece quando identidades construídas ao longo da vida começam a rachar sob o peso do movimento.",
+    "Antes da escolha. Antes da ruptura. Antes mesmo da partida.",
+  ],
+  questions: [
+    "Quem você é quando o contexto que te define desaparece?",
+    "O que carregamos sem saber que carregamos?",
+    "Identidade é construída ou descoberta?",
+  ],
+  leadTeaser: "Entre no território desta história antes de decidir se quer atravessá-la.",
+  amazonUrl: "https://www.amazon.com.br/s?k=O+Que+N%C3%A3o+Come%C3%A7ou+Bonaparte",
+  amazonPrice: "R$ 9,99",
+  amazonPricePrint: "Consulte na página da obra",
+  coverImage: publicImage("o que não começou.jpg"),
+  mindMapImage: "",
+  audioEmbedUrl: "",
+  emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/o-que-nao-comecou",
+  theme: {
+    bg: "#0A0B0D",
+    surface: "#12141a",
+    primary: "#BFC5CC",
+    secondary: "#5B646D",
+    accent: "#F1F3F5",
+    text: "#E8EAED",
+    fontTitle: "Raleway:wght@100;200;300",
+    fontBody: "Lora:ital,wght@0,400;1,400",
+    fontAccent: "Raleway:wght@500;600",
+  },
+  archetype: "O Peregrino Fragmentado",
+  temperature: "Suspensão existencial cinematográfica",
+  feeling: ["nebulosa", "hipnótica", "cinematográfica"],
+  motionProfile: "liminal",
+  seoDescription: "O Que Não Começou — ficção filosófica sobre identidade e limiar, Casa Bonaparte.",
+  ogImage: publicImage("o que não começou.jpg"),
+  audioDurationLabel: "44 minutos",
+};

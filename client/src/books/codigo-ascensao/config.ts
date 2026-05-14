@@ -1,0 +1,47 @@
+import type { BookConfig } from "@/types/book";
+import { publicImage } from "@/lib/publicImage";
+
+export const codigoAscensaoConfig: BookConfig = {
+  id: "codigo-ascensao",
+  slug: "codigo-ascensao",
+  title: "O Código da Ascensão",
+  subtitle: "Manifesto de Engenharia Existencial e Soberania Digital",
+  category: "Tecnologia · Autoconhecimento",
+  hook: "Você não está cansado.\nEstá anestesiado.\nOu você desperta — ou será substituído.",
+  territory: [
+    "O mundo não te deve nada. Enquanto seu corpo for seu principal ativo, você é perecível. Este livro não entrega motivação. Entrega confronto.",
+    "Entre inteligência artificial, disciplina brutal, soberania digital e reconstrução pessoal, O Código da Ascensão é um manifesto para quem percebe que viver distraído é morrer lentamente.",
+    "Não é sobre tecnologia. É sobre quem você vai ser quando a tecnologia substituir o que você faz — e o que sobra quando o trabalho vai embora.",
+  ],
+  questions: [
+    "O que acontece com você quando a IA fizer o que você faz — melhor e mais barato?",
+    "Soberania digital é real ou é mais uma frase bonita de LinkedIn?",
+    "Você está construindo algo que pertence a você — ou está otimizando a existência de outro?",
+  ],
+  leadTeaser: "Entenda o manifesto antes de decidir se está do lado certo.",
+  amazonUrl: "https://www.amazon.com.br/C%C3%B3digo-Ascens%C3%A3o-Manifesto-Engenharia-Existencial-ebook/dp/B0GWW2HGSV",
+  amazonPrice: "R$ 9,99",
+  amazonPricePrint: "Consulte na página da obra",
+  coverImage: publicImage("o codigo da ascençao.jpg"),
+  mindMapImage: "",
+  audioEmbedUrl: "",
+  emailWebhookUrl: "https://SEU_WEBHOOK_AQUI/codigo-ascensao",
+  theme: {
+    bg: "#05070B",
+    surface: "#0a1018",
+    primary: "#F2A93B",
+    secondary: "#00AEEF",
+    accent: "#FFFFFF",
+    text: "#EAEAEA",
+    fontTitle: "Bebas+Neue",
+    fontBody: "Inter+Tight:wght@300;400;500",
+    fontAccent: "Inter+Tight:wght@600;700",
+  },
+  archetype: "O Guerreiro Tecnológico",
+  temperature: "Urgência brutal estratégica",
+  feeling: ["elétrica", "confrontacional", "energética"],
+  motionProfile: "electrico",
+  seoDescription: "O Código da Ascensão — manifesto de engenharia existencial e soberania digital, Casa Bonaparte.",
+  ogImage: publicImage("o codigo da ascençao.jpg"),
+  audioDurationLabel: "36 minutos",
+};
