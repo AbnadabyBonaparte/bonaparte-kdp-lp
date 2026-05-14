@@ -1,5 +1,7 @@
 // api/send-dossie.js
 // Vercel Serverless Function — envia dossiê via Resend
+// Recebe email (+ nome/whatsapp). Notificação de lead: por defeito abnadabybonaparte@gmail.com; opcional: LEAD_NOTIFY_EMAIL.
+// RESEND_FROM: remetente verificado na Resend (ex.: "Casa Bonaparte <dossie@seudominio.com>"). Com onboarding@resend.dev só é possível enviar em modo teste (p.ex. para o teu email).
 
 const FROM_EMAIL =
   process.env.RESEND_FROM ||
