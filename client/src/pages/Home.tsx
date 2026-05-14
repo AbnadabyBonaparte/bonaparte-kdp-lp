@@ -153,6 +153,14 @@ function publicImageFile(name: string) {
 
 const ecosystem = [
   {
+    title: "Cartografia da Soberania Interior",
+    text: "Arquitetura existencial para quem se recusa a viver no automático.",
+    cover: visualAssets.manuscript,
+    slug: "cartografia",
+    amazonUrl:
+      "https://www.amazon.com.br/Cartografia-Soberania-Interior-Arquitetura-existencial-ebook/dp/B0GWSPPB82/",
+  },
+  {
     title: "O Código da Ascensão",
     text: "Manifesto de Engenharia Existencial e Soberania Digital",
     cover: publicImageFile("o codigo da ascençao.jpg"),
