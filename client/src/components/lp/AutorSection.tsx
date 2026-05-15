@@ -1,7 +1,8 @@
 import { Link } from "wouter";
 import { hubHref } from "@/lib/bookHostname";
 
-const AUTHOR_IMAGE = "/images/bonaparte-hero-desk-editorial.jpg";
+const AUTHOR_IMAGE = "/autor/foto_kdp.png";
+const AUTHOR_IMAGE_FALLBACK = "/images/bonaparte-hero-desk-editorial.jpg";
 
 export default function AutorSection() {
   const hub = hubHref();
@@ -18,6 +19,7 @@ export default function AutorSection() {
             style={{
               boxShadow: "inset 0 0 80px rgba(0,0,0,0.35)",
             }}
+            onError={e => { (e.target as HTMLImageElement).src = AUTHOR_IMAGE_FALLBACK; }}
           />
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.18] mix-blend-overlay"

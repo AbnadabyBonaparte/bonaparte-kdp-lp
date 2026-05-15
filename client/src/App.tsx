@@ -6,7 +6,7 @@ coerência de marca e atmosfera cinematográfica desde o primeiro paint.
 import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { getBookSlug } from "@/lib/hostname";
+import { getBookSlugFromHostname } from "@/lib/bookHostname";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -66,7 +66,7 @@ function Router() {
 }
 
 function App() {
-  const bookSlug = getBookSlug();
+  const bookSlug = getBookSlugFromHostname(window.location.hostname);
 
   if (bookSlug) {
     return (
