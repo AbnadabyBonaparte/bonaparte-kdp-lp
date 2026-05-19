@@ -18,11 +18,9 @@ export default function HeroSection({ config }: Props) {
     return () => window.clearTimeout(t);
   }, []);
 
-  const heroBg = config.heroImage || config.coverImage;
-
   return (
     <section
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center px-6 pb-16 pt-24 text-center"
+      className="relative flex min-h-[100dvh] items-center px-6 pb-16 pt-24"
       style={{ backgroundColor: config.theme.bg, color: config.theme.text }}
     >
       <div
@@ -30,55 +28,68 @@ export default function HeroSection({ config }: Props) {
         style={{ backgroundImage: GRAIN }}
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-[0.22]"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundBlendMode: "luminosity",
-        }}
-      />
-      <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `linear-gradient(180deg, ${config.theme.bg}cc 0%, ${config.theme.bg} 55%, ${config.theme.bg} 100%)`,
+          background: `radial-gradient(ellipse 70% 60% at 25% 50%, ${config.theme.primary}09 0%, transparent 65%), linear-gradient(180deg, ${config.theme.bg}bb 0%, ${config.theme.bg} 80%)`,
         }}
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: m.duration, delay: m.delay, ease: m.ease }}
-        className="relative z-[1] flex max-w-4xl flex-col items-center gap-8"
-      >
-        <img
-          src="/brand/logo.png"
-          alt="Casa Bonaparte"
-          className="h-9 w-auto opacity-90"
-          onError={e => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
-        />
-        <p
-          className="text-[10px] uppercase tracking-[0.35em] text-[color:var(--book-primary)]"
-          style={{ fontFamily: "var(--lp-font-accent)" }}
+      <div className="relative z-[1] mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_auto]">
+        {/* Book cover — above text on mobile, right column on desktop */}
+        {config.coverImage && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.93, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: m.duration * 1.1, delay: m.delay + 0.2, ease: m.ease }}
+            className="order-first flex justify-center lg:order-last lg:justify-end"
+          >
+            <img
+              src={config.coverImage}
+              alt={config.title}
+              className="block w-auto rounded-xl"
+              style={{
+                maxHeight: "clamp(220px, 38vw, 500px)",
+                boxShadow: `0 40px 100px ${config.theme.primary}28, 0 12px 32px #00000075`,
+              }}
+            />
+          </motion.div>
+        )}
+
+        {/* Text content */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: m.duration, delay: m.delay, ease: m.ease }}
+          className={`flex flex-col gap-6 ${config.coverImage ? "text-center lg:text-left" : "mx-auto max-w-4xl text-center"}`}
         >
-          {config.category}
-        </p>
-        <h1
-          className="whitespace-pre-line text-balance text-4xl leading-[1.08] sm:text-5xl md:text-6xl"
-          style={{ fontFamily: "var(--lp-font-title)" }}
-        >
-          {config.hook}
-        </h1>
-        <p
-          className="max-w-2xl text-balance text-base leading-relaxed sm:text-lg"
-          style={{
-            fontFamily: "var(--lp-font-body)",
-            opacity: 0.72,
-          }}
-        >
-          {config.subtitle}
-        </p>
-      </motion.div>
+          <img
+            src="/brand/logo.png"
+            alt="Casa Bonaparte"
+            className={`h-9 w-auto opacity-90 self-center ${config.coverImage ? "lg:self-start" : ""}`}
+            onError={e => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+          <p
+            className="text-[10px] uppercase tracking-[0.35em]"
+            style={{ color: config.theme.primary, fontFamily: "var(--lp-font-accent)" }}
+          >
+            {config.category}
+          </p>
+          <h1
+            className="whitespace-pre-line text-balance text-4xl leading-[1.08] sm:text-5xl md:text-6xl"
+            style={{ fontFamily: "var(--lp-font-title)" }}
+          >
+            {config.hook}
+          </h1>
+          <p
+            className="max-w-2xl text-balance text-base leading-relaxed sm:text-lg"
+            style={{ fontFamily: "var(--lp-font-body)", opacity: 0.72 }}
+          >
+            {config.subtitle}
+          </p>
+        </motion.div>
+      </div>
 
       {showArrow ? (
         <motion.div
