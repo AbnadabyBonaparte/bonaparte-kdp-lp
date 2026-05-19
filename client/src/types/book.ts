@@ -21,6 +21,38 @@ export interface BookTheme {
   fontAccent: string;
 }
 
+export interface BookMetricItem {
+  label: string;
+  value: string;
+}
+
+export interface BookDiagnosisItem {
+  number: string;
+  title: string;
+  text: string;
+}
+
+export interface BookPromiseItem {
+  title: string;
+  text: string;
+}
+
+export interface BookDeliverable {
+  index: string;
+  title: string;
+  text: string;
+}
+
+export interface BookAuthorSignal {
+  title: string;
+  text: string;
+}
+
+export interface BookFaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface BookConfig {
   id: string;
   slug: string;
@@ -47,4 +79,17 @@ export interface BookConfig {
   seoDescription: string;
   ogImage?: string;
   audioDurationLabel?: string;
+  // ── Novas seções ──────────────────────────────────────────────
+  metrics?: BookMetricItem[];
+  diagnosisIntro?: string;
+  diagnosisQuote?: string;
+  diagnosisQuoteBody?: string;
+  diagnosis?: BookDiagnosisItem[];
+  promises?: BookPromiseItem[];
+  deliverables?: BookDeliverable[];
+  quotes?: string[];
+  authorSignals?: BookAuthorSignal[];
+  faq?: BookFaqItem[];
+  finalHeading?: string;
+  finalBody?: string;
 }

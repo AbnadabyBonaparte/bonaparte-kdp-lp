@@ -6,13 +6,17 @@ coerência de marca e atmosfera cinematográfica desde o primeiro paint.
 import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { getBookSlugFromHostname } from "@/lib/bookHostname";
+import { getBookSlugFromHostname, getHubOrigin } from "@/lib/bookHostname";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
 import BookBySlug from "./components/BookBySlug";
+
+function HubRedirect() {
+  window.location.replace(getHubOrigin());
+  return null;
+}
 
 const CartografiaLP    = lazy(() => import("@/books/cartografia/CartografiaLP"));
 const HeimatLP         = lazy(() => import("@/books/heimat/HeimatLP"));
@@ -58,7 +62,7 @@ function Router() {
       <Route path="/burnout">
         <Suspense fallback={<LpFallback />}><BurnoutLP /></Suspense>
       </Route>
-      <Route path="/" component={Home} />
+      <Route path="/" component={HubRedirect} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
